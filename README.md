@@ -13,3 +13,13 @@ ______________________________________________________<br><br>
 ```
 git clone https://github.com/CyberT33N/Socket.io-Chat-APP-Example.git
 ```
+
+
+<br><br>______________________________________________________
+______________________________________________________<br><br>
+
+
+# pull (Download latest version of your repo)
+```
+git pull
+```
