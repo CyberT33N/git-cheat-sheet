@@ -25,10 +25,10 @@ ______________________________________________________
 
 ## commit all changes from all files
 ```
-## Method #1 | -a= all  -m= commit message
+# Method #1 | -a= all  -m= commit message
 git commit -a -m "MY MESSAGE HERE" 
 
-## Method #2
+# Method #2
 git add .
 git commit -m "MY MESSAGE HERE"
 ```
