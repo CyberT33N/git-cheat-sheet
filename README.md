@@ -11,6 +11,26 @@ https://phoenixnap.com/kb/git-commands-cheat-sheet
 ______________________________________________________
 <br><br>
 
+## SSH
+
+## How to generate (https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair)
+```bash
+## Make sure that your key will be saved on your machine you want to use to the folder ~/.ssh
+ssh-keygen -t ecdsa -b 521
+```
+<br>
+Next add your public key to your git settings:
+- https://gitlab.com/-/profile/keys
+- https://github.com/settings/keys
+
+<br><br>
+Now when you clone your repo via command line you will get asked for passphrase to verify. This will be only done 1 time.
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
 
 # clone
 - Download repo and create folder related to the repo name
