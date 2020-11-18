@@ -51,7 +51,7 @@ ______________________________________________________
 # commit
 
 ## commit all changes from all files
-```
+```bash
 # Method #1 | -a= all  -m= commit message
 git commit -a -m "MY MESSAGE HERE"
 
@@ -61,7 +61,7 @@ git commit -m "MY MESSAGE HERE"
 ```
 
 ## commit specific file
-```
+```bash
 git add app.js
 git commit -m "MY MESSAGE HERE"
 ```
@@ -74,7 +74,7 @@ ______________________________________________________
 
 # pull
 - Download latest version of your repo
-```
+```bash
 git pull
 ```
 
@@ -87,7 +87,7 @@ ______________________________________________________
 
 # push
 - Update your repo based on your commits
-```
+```bash
 git push
 ```
 
