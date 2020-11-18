@@ -25,17 +25,18 @@ ______________________________________________________
 
 ## commit all changes from all files
 ```
-## Method #1
-git commit -a
+## Method #1 | -a= all  -m= commit message
+git commit -a -m "MY MESSAGE HERE" 
 
 ## Method #2
 git add .
+git commit -m "MY MESSAGE HERE"
 ```
 
 ## commit specific file
 ```
 git add app.js
-git commit
+git commit -m "MY MESSAGE HERE"
 ```
 
 
