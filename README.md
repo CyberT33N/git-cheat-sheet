@@ -1,5 +1,5 @@
 # Git Sheet Sheet
-Git Sheet Sheet with the most needed stuff..
+Git Sheet Sheet with the most needed stuff...
 
 
 ## Command Line Cheat Sheet
@@ -26,7 +26,7 @@ ______________________________________________________
 ## commit all changes from all files
 ```
 # Method #1 | -a= all  -m= commit message
-git commit -a -m "MY MESSAGE HERE" 
+git commit -a -m "MY MESSAGE HERE"
 
 # Method #2
 git add .
