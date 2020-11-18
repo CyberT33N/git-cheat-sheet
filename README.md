@@ -13,7 +13,7 @@ ______________________________________________________
 
 ## SSH
 
-## How to generate (https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair)
+## How to generate Private & Public Key (https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair)
 ```bash
 ## Make sure that your key will be saved in your ssh folder. As example for linux: ~/.ssh/
 ssh-keygen -t ecdsa -b 521
@@ -26,6 +26,16 @@ Next add your public key to your git settings:
 <br><br>
 Now when you clone your repo via command line you will get asked for passphrase to verify. This will be only done 1 time.
 
+<br><br>
+
+## How to use Private Key global
+```bash
+# Method 1 - Edit ~/.ssh/config and enter:
+host github.com
+ HostName github.com
+ IdentityFile ~/.ssh/your_private_key
+ User git
+```
 
 <br><br>
 ______________________________________________________
