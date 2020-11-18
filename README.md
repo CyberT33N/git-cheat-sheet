@@ -35,6 +35,12 @@ host github.com
  HostName github.com
  IdentityFile ~/.ssh/your_private_key
  User git
+ ```
+ 
+## How to store passphrase
+```bash
+# Method 2 - Add key to keychain
+ssh-add -K ~/.ssh/id_ecdsa
 ```
 
 <br><br>
