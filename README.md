@@ -34,8 +34,13 @@ ______________________________________________________
 
 # clone
 - Download repo and create folder related to the repo name
-```
+```bash
 git clone https://github.com/CyberT33N/Socket.io-Chat-APP-Example.git
+```
+
+## Clone repo with specific branch
+```bash
+git clone -b my-branch git@github.com:user/myproject.git
 ```
 
 <br><br>
