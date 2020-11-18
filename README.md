@@ -80,7 +80,5 @@ ______________________________________________________
 - https://gitlab.com/import/github/status
 
 ## Mirror repo
-Open your GitLab repo and then go to **Settings > Repository** (https://gitlab.com/USERNAME/PROJECT-NAME/-/settings/repository)
-<br>Next click on **Mirroring repositories**
-
+Open your GitLab repo and then go to **Settings > Repository > Mirroring repositories** (https://gitlab.com/USERNAME/PROJECT-NAME/-/settings/repository)
 <br>**IMPORTANT** - Please notice that only public repo mirror is currently free. For mirror of privat repos you must buy premium GitLab.
