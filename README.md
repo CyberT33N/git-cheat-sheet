@@ -9,6 +9,43 @@ Git Sheet Sheet with the most needed stuff...
 - https://about.gitlab.com/images/press/git-cheat-sheet.pdf
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# Remote
+
+## Check all current remote links of your project
+```bash
+# cd into your project and then run:
+git remote -v
+```
+
+## How to use Github and GitLab on same machine
+
+#### ~/.ssh/config
+```bash
+host github.com
+ HostName github.com
+ IdentityFile ~/.ssh/id_ecdsa
+ User git
+ 
+ # GitLab.com
+Host gitlab.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_ecdsa
+
+# Private GitLab instance
+Host gitlab.company.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_ecdsa
+```
+
+#### Add new remote link
+```bash
+# cd into your project and then run:
+git remote set-url --add origin git@gitlab.com:cybert33n/test-project.git
+```
 
 <br><br>
 ______________________________________________________
