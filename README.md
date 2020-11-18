@@ -13,44 +13,6 @@ Git Sheet Sheet with the most needed stuff...
 ______________________________________________________
 <br><br>
 
-# Remote
-
-## Check all current remote links of your project
-```bash
-# cd into your project and then run:
-git remote -v
-```
-
-## How to use Github and GitLab on same machine
-
-#### ~/.ssh/config
-```bash
-host github.com
- HostName github.com
- IdentityFile ~/.ssh/id_ecdsa
- User git
- 
- # GitLab.com
-Host gitlab.com
-  Preferredauthentications publickey
-  IdentityFile ~/.ssh/id_ecdsa
-
-# Private GitLab instance
-Host gitlab.company.com
-  Preferredauthentications publickey
-  IdentityFile ~/.ssh/id_ecdsa
-```
-
-#### Add new remote link
-```bash
-# cd into your project and then run:
-git remote set-url --add origin git@gitlab.com:cybert33n/test-project.git
-```
-
-<br><br>
-______________________________________________________
-<br><br>
-
 # config
 
 ## Set the name that will be attached to your commits and tags.
@@ -218,6 +180,46 @@ ______________________________________________________
 <br><br>
 
 
+# Remote
+
+## Check all current remote links of your project
+```bash
+# cd into your project and then run:
+git remote -v
+```
+
+## How to use Github and GitLab on same machine
+
+#### ~/.ssh/config
+```bash
+host github.com
+ HostName github.com
+ IdentityFile ~/.ssh/id_ecdsa
+ User git
+ 
+ # GitLab.com
+Host gitlab.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_ecdsa
+
+# Private GitLab instance
+Host gitlab.company.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_ecdsa
+```
+
+#### Add new remote link
+```bash
+# cd into your project and then run:
+git remote set-url --add origin git@gitlab.com:cybert33n/test-project.git
+```
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
 
 # Gitlab
 
@@ -227,3 +229,6 @@ ______________________________________________________
 ## Mirror repo
 Open your GitLab repo and then go to **Settings > Repository > Mirroring repositories** (https://gitlab.com/USERNAME/PROJECT-NAME/-/settings/repository)
 <br><br>**IMPORTANT** - Please notice that only public repo mirror is currently free. For mirror of privat repos you must buy premium GitLab.
+
+
+
