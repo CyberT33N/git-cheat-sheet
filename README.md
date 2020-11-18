@@ -25,12 +25,17 @@ ______________________________________________________
 
 ## commit all changes from all files
 ```
+## Method #1
 git commit -a
+
+## Method #2
+git add .
 ```
 
 ## commit specific file
 ```
 git add app.js
+git commit
 ```
 
 
