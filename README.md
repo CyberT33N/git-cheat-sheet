@@ -62,6 +62,7 @@ git clone -b my-branch git@github.com:user/myproject.git
 ```
 
 ## Clone all repos
+- If you use SSH key for auth instead of the Access Token then your must pre-setup your machine that git clone command will work.
 ```bash
 # ---- VARIABLE ----
 ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxxxxx"
