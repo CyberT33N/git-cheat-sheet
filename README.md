@@ -68,7 +68,7 @@ ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxxxxx"
 USERNAME="xxxxxxxxxx"
 API_LINK="https://api.github.com/user/repos"
 GIT_LINK="git@github.com"
-SSH_PRIVATEKEY_PATH="$HOME/.ssh/id_ecdsa"
+# SSH_PRIVATEKEY_PATH="$HOME/.ssh/id_ecdsa"
 EXPORT_PATH="$HOME/Documents/git_projects"
 
 # ---- cd to current directory ----
@@ -80,7 +80,7 @@ printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take s
 
 # ---- clone all git repos - ACCESS TOKEN ----
 # for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN"  | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
-#do printf "\nCurrent repo link: $line"; git clone $line; done
+# do printf "\nCurrent repo link: $line"; git clone $line; done
 
 # ---- clone all git repos - SSH KEY ----
 # Notice that we have a limit of 100 items per page. If you want to get more than 100 repos this script must be edited..
