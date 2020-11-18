@@ -7,6 +7,7 @@ Git Sheet Sheet with the most needed stuff...
 ## Command Line Cheat Sheet
 https://phoenixnap.com/kb/git-commands-cheat-sheet
 
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -57,6 +58,37 @@ git clone https://github.com/CyberT33N/Socket.io-Chat-APP-Example.git
 ## Clone repo with specific branch
 ```bash
 git clone -b my-branch git@github.com:user/myproject.git
+```
+
+## Clone all repos
+```bash
+# ---- VARIABLE ----
+ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxxxxx"
+USERNAME="xxxxxxxxxx"
+API_LINK="https://api.github.com/user/repos"
+GIT_LINK="git@github.com"
+SSH_PRIVATEKEY_PATH="$HOME/.ssh/id_ecdsa"
+EXPORT_PATH="$HOME/Documents/git_projects"
+
+# ---- cd to current directory ----
+cd "$EXPORT_PATH"
+pwd
+printf "\nWe will display now the current directory used:"
+echo "$EXPORT_PATH"
+printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
+
+# ---- clone all git repos - ACCESS TOKEN ----
+# for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN"  | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
+#do printf "\nCurrent repo link: $line"; git clone $line; done
+
+# ---- clone all git repos - SSH KEY ----
+for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=100"  | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
+do printf "\nCurrent repo link: $line"; git clone $line; done
+
+
+# ---- END AREA ----
+printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+
 ```
 
 <br><br>
