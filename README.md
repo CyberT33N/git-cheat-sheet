@@ -40,7 +40,7 @@ host github.com
 ## How to store passphrase
 ```bash
 # Method 2 - Add private key to keychain. You must 1 time verify it manually and then it will be saved
-ssh-add -K ~/.ssh/id_ecdsa
+ssh-add -K ~/.ssh/your_private_key
 ```
 
 <br><br>
