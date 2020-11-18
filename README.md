@@ -9,6 +9,36 @@ Git Sheet Sheet with the most needed stuff...
 - https://about.gitlab.com/images/press/git-cheat-sheet.pdf
 
 
+
+<br><br>
+______________________________________________________
+<br><br>
+
+# config
+
+## Set the name that will be attached to your commits and tags.
+```bash
+git config --global user.name "yourname.."
+```
+
+<br><br>
+
+## Set the e-mail address that will be attached to your commits and tags.
+```bash
+git config --global user.email "sample@mail.com"
+```
+
+
+<br><br>
+
+## Enable some colorization of Git output.
+```bash
+git config --global color.ui auto
+```
+
+ 
+
+
 <br><br>
 ______________________________________________________
 <br><br>
