@@ -10,9 +10,27 @@ ______________________________________________________
 <br><br>
 
 
-# clone (Download repo and create folder related to the repo name)
+# clone
+- Download repo and create folder related to the repo name
 ```
 git clone https://github.com/CyberT33N/Socket.io-Chat-APP-Example.git
+```
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
+# commit
+
+## commit all changes from all files
+```
+git commit -a
+```
+
+## commit specific file
+```
+git add app.js
 ```
 
 
@@ -21,9 +39,23 @@ ______________________________________________________
 <br><br>
 
 
-# pull (Download latest version of your repo)
+# pull
+- Download latest version of your repo
 ```
 git pull
+```
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
+# push
+- Update your repo based on your commits
+```
+git push
 ```
 
 
