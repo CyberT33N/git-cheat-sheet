@@ -191,10 +191,19 @@ ______________________________________________________
 
 # Branch
 
-## Check current branch of repo
+## Check all branches
 ```bash
 git branch
 ```
+
+## Check current branch 
+```bash
+git branch --show-current
+```
+
+
+git branch --show-current
+
 
 <br><br>
 ______________________________________________________
