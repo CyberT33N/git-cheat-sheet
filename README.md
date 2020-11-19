@@ -221,6 +221,15 @@ git branch --show-current
 git branch branch_name
 ```
 
+
+<br><br>
+
+## delete branch
+```bash
+git branch -d branch_name
+```
+
+
 <br><br>
 
 ## switch branch
