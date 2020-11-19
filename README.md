@@ -183,7 +183,14 @@ ______________________________________________________
 git push
 ```
 
-## Push repo to all remote repos
+<br><br>
+
+## Push to specific remote repo
+```bash
+git push REMOTE_REPO_NAME BRANCH
+```
+
+## Push to all remote repos
 ```bash
 git remote | xargs -L1 git push --all
 ```
