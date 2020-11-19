@@ -241,10 +241,10 @@ Host gitlab.company.com
   IdentityFile ~/.ssh/id_ecdsa
 ```
 
-#### Add new remote link
+#### Add new remote repo
 ```bash
 # cd into your project and then run:
-git remote set-url --add origin git@gitlab.com:cybert33n/test-project.git
+git remote add REPO_NAME git@gitlab.com:USERNAME/PROJECTNAME.git
 ```
 
 
