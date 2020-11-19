@@ -295,6 +295,22 @@ ______________________________________________________
 rm -rf .git/MERGE*
 ```
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# stash (https://git-scm.com/docs/git-stash)
+- Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.
+
+<br><br>
+
+## show all stashes
+```bash
+git stash show
+```
+
+
+
 
 <br><br>
 ______________________________________________________
