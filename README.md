@@ -264,6 +264,19 @@ git remote add REPO_NAME git@gitlab.com:USERNAME/PROJECTNAME.git
 ______________________________________________________
 <br><br>
 
+# merge
+
+## Ignore merge conflicts
+```bash
+# cd into your project and then run:
+rm -rf .git/MERGE*
+```
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
 
 
 # Gitlab
