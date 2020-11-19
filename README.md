@@ -213,8 +213,15 @@ git branch
 git branch --show-current
 ```
 
+<br><br>
 
-git branch --show-current
+
+## Create branch
+```bash
+git branch branch_name
+```
+
+
 
 
 <br><br>
