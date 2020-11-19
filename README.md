@@ -151,9 +151,9 @@ git commit -m "MY MESSAGE HERE"
 <br><br>
 
 
-## fake commit with no changes
+## empty commit
 ```bash
-git commit --allow-empty -a -m "Cron Job Mirror"
+git commit -a --allow-empty --allow-empty-message -m ''
 ```
 
 
