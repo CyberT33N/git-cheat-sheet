@@ -221,6 +221,13 @@ git branch --show-current
 git branch branch_name
 ```
 
+<br><br>
+
+## switch branch
+```bash
+git checkout branch_name
+```
+
 
 
 
