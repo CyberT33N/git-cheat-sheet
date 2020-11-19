@@ -148,6 +148,16 @@ git add app.js
 git commit -m "MY MESSAGE HERE"
 ```
 
+<br><br>
+
+
+## fake commit with no changes
+```bash
+git commit --allow-empty -a -m "Cron Job Mirror"
+```
+
+
+
 
 <br><br>
 ______________________________________________________
