@@ -213,6 +213,7 @@ ______________________________________________________
 
 
 # Remote
+- Basic Guide (https://git-scm.com/book/de/v2/Git-Grundlagen-Mit-Remotes-arbeiten)
 
 ## Check all current remote links of your project
 ```bash
