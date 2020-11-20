@@ -347,9 +347,103 @@ ______________________________________________________
 ## Import repos from Github
 - https://gitlab.com/import/github/status
 
-## Mirror repo
+
+<br><br>
+
+
+## Mirror
+
+#### Auto Sync via Gitlab UI
 Open your GitLab repo and then go to **Settings > Repository > Mirroring repositories** (https://gitlab.com/USERNAME/PROJECT-NAME/-/settings/repository)
 <br><br>**IMPORTANT** - Please notice that only public repo mirror is currently free. For mirror of privat repos you must buy premium GitLab.
 
 
+#### Mirror Github 2 GitLab
+```bash
+# This script will clone all your Github repos and then mirror them to GitLab. This is usefully when you want to keep your repos sync and dont have GitLab Premium. You should use this script on your server as cron job.
 
+# Currently your GitLab account already must contain all the repos you want to mirror. You can easily achieve this by using: https://gitlab.com/import/github/status
+
+# This script will only work when your master branch (normally called main/master) is not protected by GitLab.
+# You can manually unprotect your master branch at your repo at Settings > Repository > Protected Branch (https://gitlab.com/USERNAME/REPONAME/-/settings/repository)
+# Alternative when you host GitLab on your own server you can go to admin settings and change the default settings for protected branch to not do this manually for every repo.
+
+# This script is currently limited to 100 repos cause of the Github API page limit.
+
+
+
+# ---- VARIABLE ----
+ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxx"
+USERNAME="xxxxx"
+
+API_LINK="https://api.github.com/user/repos"
+GIT_LINK="git@github.com"
+
+EXPORT_PATH="$HOME/Documents/git_projects"
+
+PAGE_LIMIT=100
+
+REMOTE_REPO_NAME="gitlab"
+REMOTE_REPO_HOST="git@gitlab.com"
+REMOTE_USERNAME="xxxxx"
+
+
+
+
+# ---- cd to current directory ----
+cd "$EXPORT_PATH"; printf "\nWe will display now the current directory used:"; pwd
+
+
+
+# ---- get all repos by using the API ----
+printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
+for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
+  do printf "\nCurrent repo link: $line" &&
+
+  # cd back to the git project root folder
+  cd "$EXPORT_PATH" && printf "\nWe will display now the current directory used: " && pwd &&
+
+  # match repo name - git@github.com:USERNAME/REPONAME.git
+  [[ $line =~ ([._a-zA-Z0-9-]+).git$ ]] &&
+  printf "\n Matched project name: ${BASH_REMATCH[0]}\n" &&
+
+  # replace .git from project name
+  PROJECTNAME=$(echo ${BASH_REMATCH[0]} | sed 's/.git//g') &&
+  #printf "\n Matched project name without .git: $PROJECTNAME";
+
+  # clone the current repo
+  git clone $line &&
+
+  # cd into the repo we cloned
+  cd $PROJECTNAME && printf "\nProject directory: " && pwd &&
+
+  # add gitlab repo as second remote link
+  git remote add $REMOTE_REPO_NAME $REMOTE_REPO_HOST:$REMOTE_USERNAME/$PROJECTNAME.git &&
+
+  # create temp file and add it
+  touch .placeholder_mirror && git add . &&
+
+  # get default branch name
+  REMOTE_DEFAULT_BRANCH=$( git remote show $REMOTE_REPO_NAME | awk '/HEAD branch/ {print $NF}' ) &&
+  printf "\nDefault Remote Branch name: $REMOTE_DEFAULT_BRANCH\n" &&
+
+  # dirty workaround for empty push - create stash, push it and then delete it
+  git stash save &&
+  git push -f $REMOTE_REPO_NAME "stash@{0}:$REMOTE_DEFAULT_BRANCH" &&
+  git stash pop &&
+
+  # remove temp file from repo and disc
+  git rm -f .placeholder_mirror &&
+
+  # mirror local repo by push to remote repo
+  git push -f $REMOTE_REPO_NAME &&
+
+  # delete repo for next run in future
+  cd ../ && rm -rf $PROJECTNAME &
+
+  # ---- END AREA ----
+  done
+  wait
+
+printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+```
