@@ -208,6 +208,9 @@ ______________________________________________________
 ## Get default branch
 ```bash
 git remote show <remote_name> | awk '/HEAD branch/ {print $NF}'
+
+#REMOTE_DEFAULT_BRANCH=$( git remote show $REMOTE_REPO_NAME | awk '/HEAD branch/ {print $NF}' )
+#printf "\nDefault Remote Branch: $REMOTE_DEFAULT_BRANCH \n"
 ```
 <br><br>
 
