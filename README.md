@@ -203,6 +203,14 @@ ______________________________________________________
 
 # Branch
 
+<br>
+
+## Get default branch
+```bash
+git remote show <remote_name> | awk '/HEAD branch/ {print $NF}'
+```
+<br><br>
+
 ## Check all branches
 ```bash
 git branch
