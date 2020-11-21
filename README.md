@@ -359,40 +359,47 @@ Open your GitLab repo and then go to **Settings > Repository > Mirroring reposit
 
 #### Mirror Github 2 GitLab
 ```bash
-# This script will clone all your Github repos and then mirror them to GitLab. This is usefully when you want to keep your repos sync and dont have GitLab Premium. You should use this script on your server as cron job.
+: 'This script will clone all your Github repos and then mirror them to GitLab.
+This is usefully when you want to keep your repos sync and dont have GitLab Premium.
+You should use this script on your server as cron job.
 
-# Currently your GitLab account already must contain all the repos you want to mirror. You can easily achieve this by using: https://gitlab.com/import/github/status
+Currently your GitLab account already must contain all the repos you want to mirror.
+You can easily achieve this by using: https://gitlab.com/import/github/status
 
-# This script will only work when your master branch (normally called main/master) is not protected by GitLab.
-# You can manually unprotect your master branch at your repo at Settings > Repository > Protected Branch (https://gitlab.com/USERNAME/REPONAME/-/settings/repository)
-# Alternative when you host GitLab on your own server you can go to admin settings and change the default settings for protected branch to not do this manually for every repo.
+This script will only work when your master branch (normally called main/master) is not protected by GitLab.
+You can manually unprotect your master branch at your repo at:
+- Settings > Repository > Protected Branch (https://gitlab.com/USERNAME/REPONAME/-/settings/repository)
 
-# This script is currently limited to 100 repos cause of the Github API page limit.
+Alternative when you host GitLab on your own server you can go to admin settings
+and change the default settings for protected branch to not do this manually for every repo.
+
+This script is currently limited to 100 repos cause of the Github API page limit.
+'
 
 
 
 # ---- VARIABLE ----
-ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxx"
-USERNAME="xxxxx"
+ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxxxxxxx"
+USERNAME="xxxxxx"
 
 API_LINK="https://api.github.com/user/repos"
 GIT_LINK="git@github.com"
 
+
 EXPORT_PATH="$HOME/Documents/git_projects"
 
-PAGE_LIMIT=100
+# I guess the github limit is 100 item per page. So if you got more than 100 repos this script is not working
+PAGE_LIMIT=3
 
 REMOTE_REPO_NAME="gitlab"
 REMOTE_REPO_HOST="git@gitlab.com"
-REMOTE_USERNAME="xxxxx"
+REMOTE_USERNAME="xxxxxxx"
 
 
 
 
 # ---- cd to current directory ----
 cd "$EXPORT_PATH"; printf "\nWe will display now the current directory used:"; pwd
-
-
 
 # ---- get all repos by using the API ----
 printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
@@ -410,13 +417,49 @@ for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" |
   PROJECTNAME=$(echo ${BASH_REMATCH[0]} | sed 's/.git//g') &&
   #printf "\n Matched project name without .git: $PROJECTNAME";
 
-  # clone the current repo
-  git clone $line &&
+
+
+
+
+  # if repo folder does not exist we clone repo and automatically create the folder
+  # if repo folder exist we clone to temp dir and then replace the old repo
+   if [ -d "$PROJECTNAME" ]
+    then printf "\n Repo $PROJECTNAME folder already exist..\n" &&
+
+
+      # check if tempMirror folder already exist because of script crashes etc.. If true delete it
+      [ -d $PROJECTNAME/tempMirror ] && rm -rf $PROJECTNAME/tempMirror;
+
+      # Clone just the repository's .git folder (excluding files as they are already in `existing-dir`) into an empty temporary directory
+      git clone --no-checkout $line $PROJECTNAME/tempMirror && # might want --no-hardlinks for cloning local repo
+
+      # check if .git folder exist. If true delete it.
+      [ -d $PROJECTNAME/.git ] && rm -rf $PROJECTNAME/.git;
+
+
+
+      # Move the .git folder to the directory with the files.
+      # This makes `existing-dir` a git repo.
+      mv $PROJECTNAME/tempMirror/.git $PROJECTNAME &&
+
+      # Delete the temporary directory
+      rm -rf $PROJECTNAME/tempMirror; cd $PROJECTNAME &&
+
+      # git thinks all files are deleted, this reverts the state of the repo to HEAD.
+      # WARNING: any local changes to the files will be lost.
+      git reset --hard HEAD &
+
+     else printf "\n Repo $PROJECTNAME folder does not exist..\n"; git clone $line &
+  fi # if [ ! -d "./$PROJECTNAME" ]
+
+
+
+
 
   # cd into the repo we cloned
   cd $PROJECTNAME && printf "\nProject directory: " && pwd &&
 
-  # add gitlab repo as second remote link
+  # add gitlab remote repo as second remote link
   git remote add $REMOTE_REPO_NAME $REMOTE_REPO_HOST:$REMOTE_USERNAME/$PROJECTNAME.git &&
 
   # create temp file and add it
@@ -434,15 +477,14 @@ for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" |
   # remove temp file from repo and disc
   git rm -f .placeholder_mirror &&
 
+
+
   # mirror local repo by push to remote repo
-  git push -f $REMOTE_REPO_NAME &&
+  git push -f $REMOTE_REPO_NAME &
 
-  # delete repo for next run in future
-  cd ../ && rm -rf $PROJECTNAME &
-
-  # ---- END AREA ----
   done
   wait
-
+# ---- END AREA ----
 printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+
 ```
