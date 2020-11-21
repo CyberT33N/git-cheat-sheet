@@ -5,7 +5,6 @@ Git Sheet Sheet with the most needed stuff...
 <br><br>
 
 ## Command Line Cheat Sheet
-- https://phoenixnap.com/kb/git-commands-cheat-sheet
 - https://about.gitlab.com/images/press/git-cheat-sheet.pdf
 
 
@@ -98,16 +97,17 @@ git clone -b my-branch git@github.com:user/myproject.git
 # ---- VARIABLE ----
 ACCESS_TOKEN="xxxxxxxxxxxxxxxxxxxxxx"
 USERNAME="xxxxxxxxxx"
+
 API_LINK="https://api.github.com/user/repos"
 GIT_LINK="git@github.com"
+
 # SSH_PRIVATEKEY_PATH="$HOME/.ssh/id_ecdsa"
+
 EXPORT_PATH="$HOME/Documents/git_projects"
 
 # ---- cd to current directory ----
-cd "$EXPORT_PATH"
-pwd
-printf "\nWe will display now the current directory used:"
-echo "$EXPORT_PATH"
+cd "$EXPORT_PATH"; pwd
+printf "\nWe will display now the current directory used:"; echo "$EXPORT_PATH"
 printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
 
 # ---- clone all git repos - ACCESS TOKEN ----
