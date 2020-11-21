@@ -511,6 +511,9 @@ for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" |
   # mirror local repo by push to remote repo
   git push -f $REMOTE_REPO_NAME &
 
-done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+done
+wait
+printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+
 
 ```
