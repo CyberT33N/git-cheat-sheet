@@ -410,7 +410,7 @@ CD(){ cd "$1"; printf "\nCD() - We will display now the current directory used:"
 
 fakeCommit(){ printf "\n---- fakeCommit() ----\n"
   # create temp file and add files
-  touch .placeholder_mirror;
+  touch .placeholder_mirror
   git add .
 
   # get default branch name
