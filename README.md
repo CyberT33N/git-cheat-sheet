@@ -498,7 +498,7 @@ main(){ printf "\n---- main() ----\nCurrent repo link: $line"
 
   # if repo folder does not exist we clone repo and automatically create the folder
   # if repo folder exist we clone to temp dir and then replace the old repo
-  [ -d $REPONAME ] && repoExist || repoNotExist;
+  [ -d $REPONAME ] && repoExist || repoNotExist
 
   # add gitlab remote repo as second remote link
   addRemoteRepo
@@ -513,7 +513,7 @@ main(){ printf "\n---- main() ----\nCurrent repo link: $line"
 
 # ---- get all repos by using the API ----
 printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
-for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
+for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+")
   do main &
 done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
 
