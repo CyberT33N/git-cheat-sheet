@@ -392,7 +392,7 @@ GIT_LINK="git@github.com"
 EXPORT_PATH="$HOME/Documents/git_projects"
 
 # I guess the github limit is 100 item per page. So if you got more than 100 repos this script is not working
-PAGE_LIMIT=3
+PAGE_LIMIT=100
 
 REMOTE_REPO_NAME="gitlab"
 REMOTE_REPO_HOST="git@gitlab.com"
