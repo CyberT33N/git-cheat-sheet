@@ -101,8 +101,6 @@ USERNAME="xxxxxxxxxx"
 API_LINK="https://api.github.com/user/repos"
 GIT_LINK="git@github.com"
 
-# SSH_PRIVATEKEY_PATH="$HOME/.ssh/id_ecdsa"
-
 EXPORT_PATH="$HOME/Documents/git_projects"
 
 # ---- cd to current directory ----
