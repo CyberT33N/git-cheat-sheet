@@ -402,6 +402,9 @@ REMOTE_USERNAME="xxxxxxx"
 
 
 
+
+
+
 CD(){ cd "$1"; printf "\nCD() - We will display now the current directory used:"; pwd; } # CD(){
 
 
