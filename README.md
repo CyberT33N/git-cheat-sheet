@@ -454,6 +454,7 @@ for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" |
 
      else printf "\n Repo $PROJECTNAME folder does not exist..\n"; git clone $line &
   fi # if [ ! -d "./$PROJECTNAME" ]
+  wait
 
 
 
@@ -489,5 +490,4 @@ for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" |
   wait
 # ---- END AREA ----
 printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
-
 ```
