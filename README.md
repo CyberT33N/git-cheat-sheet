@@ -487,33 +487,32 @@ addRemoteRepo(){ printf "\n---- addRemoteRepo() ----\n"
 
 
 
+main(){ printf "\n---- main() ----\nCurrent repo link: $line"
 
-
-# ---- get all repos by using the API ----
-printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
-for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
-  do printf "\nCurrent repo link: $line" &&
-
-  # cd back to the git project root folder and get next Repo Name
-  CD $EXPORT_PATH &&
-  getRepoName &&
+  # cd back to the git project main folder and get next Repo Name
+  CD $EXPORT_PATH
+  getRepoName
 
   # if repo folder does not exist we clone repo and automatically create the folder
   # if repo folder exist we clone to temp dir and then replace the old repo
   [ -d $REPONAME ] && repoExist || repoNotExist;
 
   # add gitlab remote repo as second remote link
-  addRemoteRepo &&
+  addRemoteRepo
 
   # create empty fake commit that will not be in history
-  fakeCommit &&
+  fakeCommit
 
   # mirror local repo by push to remote repo
-  git push -f $REMOTE_REPO_NAME &
+  git push -f $REMOTE_REPO_NAME
+} # main(){
 
-done
-wait
-printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+
+# ---- get all repos by using the API ----
+printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
+for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
+  do main &
+done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
 
 
 ```
