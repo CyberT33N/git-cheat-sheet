@@ -401,93 +401,116 @@ REMOTE_USERNAME="xxxxxxx"
 
 
 
-# ---- cd to current directory ----
-cd "$EXPORT_PATH"; printf "\nWe will display now the current directory used:"; pwd
+
+CD(){ cd "$1"; printf "\nCD() - We will display now the current directory used:"; pwd; } # CD(){
+
+
+fakeCommit(){ printf "\n---- fakeCommit() ----\n"
+  # create temp file and add files
+  touch .placeholder_mirror;
+  git add .
+
+  # get default branch name
+  REMOTE_DEFAULT_BRANCH=$( git remote show $REMOTE_REPO_NAME | awk '/HEAD branch/ {print $NF}' )
+  printf "Default Remote Branch name: $REMOTE_DEFAULT_BRANCH\n"
+
+  # dirty workaround for empty push - create stash, push it and then delete it
+  git stash save
+  git push -f $REMOTE_REPO_NAME "stash@{0}:$REMOTE_DEFAULT_BRANCH"
+  git stash pop
+
+  # remove temp file from repo and disc
+  git rm -f .placeholder_mirror
+} # fakeCommit(){
+
+
+
+
+
+
+
+getRepoName(){ printf "\n---- getRepoName() ----\n"
+  # match repo name - git@github.com:USERNAME/REPONAME.git
+  [[ $line =~ ([._a-zA-Z0-9-]+).git$ ]]
+  printf "Matched project name: ${BASH_REMATCH[0]}\n"
+
+  # replace .git from project name
+  REPONAME=$(echo ${BASH_REMATCH[0]} | sed 's/.git//g')
+  #printf "\n Matched project name without .git: $REPONAME";
+} # getRepoName(){
+
+
+
+
+
+repoNotExist(){ printf "\n---- repoNotExist() - Repo name: $REPONAME----\n"; git clone $line; } # repoNotExist(){
+
+repoExist(){ printf "\n---- repoExist() - Repo name: $REPONAME----\n"
+  # tempMirror folder already exist because of script crashes etc.. we delete it now
+  rm -rf $REPONAME/tempMirror
+
+  # Clone just the repository's .git folder (excluding files as they are already in `existing-dir`) into an empty temporary directory
+  git clone --no-checkout $line $REPONAME/tempMirror  # might want --no-hardlinks for cloning local repo
+
+  # check if .git folder exist. If true delete it.
+  [ -d $REPONAME/.git ] && rm -rf $REPONAME/.git
+
+  # Move the .git folder to the directory with the files.
+  # This makes `existing-dir` a git repo.
+  mv $REPONAME/tempMirror/.git $REPONAME
+
+  # Delete the temporary directory
+  rm -rf $REPONAME/tempMirror
+  cd $REPONAME
+
+  # git thinks all files are deleted, this reverts the state of the repo to HEAD.
+  # WARNING: any local changes to the files will be lost.
+  git reset --hard HEAD
+} # repoExist(){
+
+
+
+
+
+
+
+
+
+
+addRemoteRepo(){ printf "\n---- addRemoteRepo() ----\n"
+  # cd into the repo we cloned
+  CD $REPONAME
+
+  # add gitlab remote repo
+  git remote add $REMOTE_REPO_NAME $REMOTE_REPO_HOST:$REMOTE_USERNAME/$REPONAME.git
+} # addRemoteRepo(){
+
+
+
+
 
 # ---- get all repos by using the API ----
 printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take some time..\n"
 for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=$PAGE_LIMIT" | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
   do printf "\nCurrent repo link: $line" &&
 
-  # cd back to the git project root folder
-  cd "$EXPORT_PATH" && printf "\nWe will display now the current directory used: " && pwd &&
-
-  # match repo name - git@github.com:USERNAME/REPONAME.git
-  [[ $line =~ ([._a-zA-Z0-9-]+).git$ ]] &&
-  printf "\n Matched project name: ${BASH_REMATCH[0]}\n" &&
-
-  # replace .git from project name
-  PROJECTNAME=$(echo ${BASH_REMATCH[0]} | sed 's/.git//g') &&
-  #printf "\n Matched project name without .git: $PROJECTNAME";
-
-
-
-
+  # cd back to the git project root folder and get next Repo Name
+  CD $EXPORT_PATH &&
+  getRepoName &&
 
   # if repo folder does not exist we clone repo and automatically create the folder
   # if repo folder exist we clone to temp dir and then replace the old repo
-   if [ -d "$PROJECTNAME" ]
-    then printf "\n Repo $PROJECTNAME folder already exist..\n" &&
-
-
-      # check if tempMirror folder already exist because of script crashes etc.. If true delete it
-      [ -d $PROJECTNAME/tempMirror ] && rm -rf $PROJECTNAME/tempMirror;
-
-      # Clone just the repository's .git folder (excluding files as they are already in `existing-dir`) into an empty temporary directory
-      git clone --no-checkout $line $PROJECTNAME/tempMirror && # might want --no-hardlinks for cloning local repo
-
-      # check if .git folder exist. If true delete it.
-      [ -d $PROJECTNAME/.git ] && rm -rf $PROJECTNAME/.git;
-
-
-
-      # Move the .git folder to the directory with the files.
-      # This makes `existing-dir` a git repo.
-      mv $PROJECTNAME/tempMirror/.git $PROJECTNAME &&
-
-      # Delete the temporary directory
-      rm -rf $PROJECTNAME/tempMirror; cd $PROJECTNAME &&
-
-      # git thinks all files are deleted, this reverts the state of the repo to HEAD.
-      # WARNING: any local changes to the files will be lost.
-      git reset --hard HEAD &
-
-     else printf "\n Repo $PROJECTNAME folder does not exist..\n"; git clone $line &
-  fi # if [ ! -d "./$PROJECTNAME" ]
-  wait
-
-
-
-
-
-  # cd into the repo we cloned
-  cd $PROJECTNAME && printf "\nProject directory: " && pwd &&
+  [ -d $REPONAME ] && repoExist || repoNotExist;
 
   # add gitlab remote repo as second remote link
-  git remote add $REMOTE_REPO_NAME $REMOTE_REPO_HOST:$REMOTE_USERNAME/$PROJECTNAME.git &&
+  addRemoteRepo &&
 
-  # create temp file and add it
-  touch .placeholder_mirror && git add . &&
-
-  # get default branch name
-  REMOTE_DEFAULT_BRANCH=$( git remote show $REMOTE_REPO_NAME | awk '/HEAD branch/ {print $NF}' ) &&
-  printf "\nDefault Remote Branch name: $REMOTE_DEFAULT_BRANCH\n" &&
-
-  # dirty workaround for empty push - create stash, push it and then delete it
-  git stash save &&
-  git push -f $REMOTE_REPO_NAME "stash@{0}:$REMOTE_DEFAULT_BRANCH" &&
-  git stash pop &&
-
-  # remove temp file from repo and disc
-  git rm -f .placeholder_mirror &&
-
-
+  # create empty fake commit that will not be in history
+  fakeCommit &&
 
   # mirror local repo by push to remote repo
   git push -f $REMOTE_REPO_NAME &
 
-  done
-  wait
-# ---- END AREA ----
-printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/CyberT33N )\n"
+
 ```
