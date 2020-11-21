@@ -115,7 +115,10 @@ printf "\n\nWe will clone now all your repos!\n\nPlease wait.. This maybe take s
 # ---- clone all git repos - SSH KEY ----
 # Notice that we have a limit of 100 items per page. If you want to get more than 100 repos this script must be edited..
 for line in $(curl "$API_LINK?access_token=$ACCESS_TOKEN&per_page=100"  | grep -o "$GIT_LINK:$USERNAME/[^ ,\"]\+");
-do printf "\nCurrent repo link: $line"; git clone $line; done
+do printf "\nCurrent repo link: $line" &&
+  git clone $line &
+done
+wait
 
 
 # ---- END AREA ----
