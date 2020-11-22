@@ -337,10 +337,33 @@ git rm -f your_file.txt
 git push -f
 ```
 
+
 <br><br>
 ______________________________________________________
 ______________________________________________________
 <br><br>
+
+# .gitignore
+- Ignore files and folders for push
+```bash
+node_modules/
+```
+
+<br><br>
+
+## Create .gitignore file and include node_modules folder
+```bash
+touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ; git status
+```
+
+
+<br><br>
+______________________________________________________
+______________________________________________________
+<br><br>
+
+
+
 
 
 # Gitlab
