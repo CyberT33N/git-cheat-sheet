@@ -140,10 +140,6 @@ git log
 
 ## commit all changes from all files
 ```bash
-# Method #1 | -a= all  -m= commit message
-git commit -a -m "MY MESSAGE HERE"
-
-# Method #2
 git add .
 git commit -m "MY MESSAGE HERE"
 ```
