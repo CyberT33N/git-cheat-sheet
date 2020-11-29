@@ -133,6 +133,11 @@ ______________________________________________________
 
 # commit
 
+## Show logs of last commits
+```bash
+git log
+```
+
 ## commit all changes from all files
 ```bash
 # Method #1 | -a= all  -m= commit message
