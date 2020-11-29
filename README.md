@@ -299,6 +299,30 @@ Host gitlab.company.com
 git remote add REPO_NAME git@gitlab.com:USERNAME/PROJECTNAME.git
 ```
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# reset
+
+## reset last main commit
+```bash
+git reset --soft HEAD^     # Use --soft if you want to keep your changes
+git reset --hard HEAD^     # Use --hard if you don't care about keeping the changes you made
+```
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+# revert
+
+## revert specific commit
+```bash
+# use git log to get commit id
+git revert id_here
+```
 
 <br><br>
 ______________________________________________________
