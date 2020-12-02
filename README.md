@@ -239,7 +239,11 @@ git branch branch_name
 
 ## delete branch
 ```bash
-git branch -d branch_name
+// delete branch locally
+git branch -d localBranchName
+
+// delete branch remotely
+git push origin --delete remoteBranchName
 ```
 
 
