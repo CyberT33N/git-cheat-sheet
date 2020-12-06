@@ -571,3 +571,21 @@ done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( gi
 
 
 ```
+
+
+<br><br>
+______________________________________________________
+______________________________________________________
+<br><br>
+
+
+
+# Markdown
+
+## Colabsing menu
+```md
+# Header name
+<details><summary>Click to expand..</summary>
+Some stuff inside here..
+</details>
+```
