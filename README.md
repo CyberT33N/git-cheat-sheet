@@ -584,9 +584,29 @@ ______________________________________________________
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 ## Colabsing menu
-```md
+```markdown
 # Header name
 <details><summary>Click to expand..</summary>
 Some stuff inside here..
 </details>
 ```
+
+
+# TOC (Table of Contents)
+```markdown
+# Some data.. 
+1. [Example](#example)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+
+
+## Example
+## Example2
+## Third Example
+
+
+## [Fourth Example](http://www.fourthexample.com) 
+```
+
+
