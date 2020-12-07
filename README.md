@@ -141,13 +141,13 @@ git log
 ## commit all changes from all files
 ```bash
 git add .
-git commit -m "MY MESSAGE HERE"
+git commit -m "TITLE" -m "DESCRIPTION"
 ```
 
 ## commit specific file
 ```bash
 git add app.js
-git commit -m "MY MESSAGE HERE"
+git commit -m "TITLE" -m "DESCRIPTION"
 ```
 
 <br><br>
