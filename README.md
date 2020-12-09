@@ -165,6 +165,23 @@ git commit -a --allow-empty --allow-empty-message -m ''
 ______________________________________________________
 <br><br>
 
+# fetch
+
+## Force pull by overwriting local files
+```bash
+git fetch --all
+
+# if you are on the master branch
+git reset --hard origin/master
+
+# if other branch
+# git reset --hard origin/<branch_name>
+```
+
+<br><br>
+______________________________________________________
+<br><br>
+
 
 # pull
 - Download latest version of your repo
