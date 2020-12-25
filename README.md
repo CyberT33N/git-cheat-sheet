@@ -324,8 +324,10 @@ ______________________________________________________
 
 ## reset last main commit
 ```bash
-git reset --soft HEAD^     # Use --soft if you want to keep your changes
-git reset --hard HEAD^     # Use --hard if you don't care about keeping the changes you made
+git reset --soft HEAD^  # Use --soft if you want to keep your changes
+git reset --hard HEAD^  # Use --hard if you don't care about keeping the changes you made
+
+git push --force  # force push the last commit to your repo. The deleted commit will be also deleted from your repo
 ```
 
 
