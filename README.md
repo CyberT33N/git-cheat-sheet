@@ -331,8 +331,13 @@ ______________________________________________________
 
 ## Push Github repo to Gitalab
 ```bash
-# cd into your project and then run:
-git remote -v
+git clone your_github_repo
+
+# add remote repo
+git remote add gitlab http://gitlab.urlhere/username/projectname.git
+
+## Push repo to gitlab
+git push gitlab
 ```
 
 <br><br>
@@ -340,11 +345,7 @@ git remote -v
 
 ## Check all current remote links of your project
 ```bash
-# add remote repo
-git remote add gitlab http://gitlab.urlhere/username/projectname.git
-
-## Push repo to gitlab
-git push gitlab
+git remote -v
 ```
 
 <br><br>
