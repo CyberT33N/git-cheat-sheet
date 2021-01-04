@@ -2,7 +2,23 @@
 Git Sheet Sheet with the most needed stuff...
 
 
+
+
+
+# Gitlab
+
+## Guides
+- GitLab: Einstieg in die Versionskontrolle (Webinar vom 16. Mai 2018) https://www.youtube.com/watch?t=1751&v=j7OHSghOvjg&feature=youtu.be
+
+
+
 <br><br>
+______________________________________________________
+<br><br>
+
+
+
+
 
 ## Command Line Cheat Sheet
 - https://about.gitlab.com/images/press/git-cheat-sheet.pdf
