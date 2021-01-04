@@ -11,6 +11,11 @@ Git Sheet Sheet with the most needed stuff...
 - GitLab: Einstieg in die Versionskontrolle (Webinar vom 16. Mai 2018) https://www.youtube.com/watch?t=1751&v=j7OHSghOvjg&feature=youtu.be
 
 
+<br><br>
+
+# Quick Actions
+- http://gitlab.aic-group.local/help/user/project/quick_actions
+
 
 <br><br>
 ______________________________________________________
