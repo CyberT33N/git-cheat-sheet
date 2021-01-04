@@ -14,7 +14,7 @@ Git Sheet Sheet with the most needed stuff...
 <br><br>
 
 # Quick Actions
-- http://gitlab.aic-group.local/help/user/project/quick_actions
+- https://docs.gitlab.com/ee/user/project/quick_actions.html
 
 
 <br><br>
