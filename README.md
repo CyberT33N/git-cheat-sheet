@@ -15,6 +15,7 @@ ______________________________________________________
 # change timeout for session password
 ```bash
 git config --global credential.helper "cache --timeout=3600"
+# 0 should be unlimited
 ```
 
 <br><br>
