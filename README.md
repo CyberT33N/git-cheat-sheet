@@ -14,9 +14,18 @@ ______________________________________________________
 
 # change timeout for session password
 ```bash
+# if terminal closed it must be typed again
 git config --global credential.helper "cache --timeout=3600"
 # 0 should be unlimited
 ```
+
+<br>
+
+# disable password verify by using .git-credentials at %HOME%
+```bash
+git config --global credential.helper store
+```
+
 
 <br><br>
 ______________________________________________________
