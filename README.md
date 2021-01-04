@@ -12,6 +12,16 @@ Git Sheet Sheet with the most needed stuff...
 ______________________________________________________
 <br><br>
 
+# chage timeout for session password
+```bash
+git config --global credential.helper "cache --timeout=3600"
+```
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
 # config
 
 ## Set the name that will be attached to your commits and tags.
