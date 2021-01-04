@@ -325,11 +325,29 @@ ______________________________________________________
 # Remote
 - Basic Guide (https://git-scm.com/book/de/v2/Git-Grundlagen-Mit-Remotes-arbeiten)
 
-## Check all current remote links of your project
+
+<br><br>
+
+
+## Push Github repo to Gitalab
 ```bash
 # cd into your project and then run:
 git remote -v
 ```
+
+<br><br>
+
+
+## Check all current remote links of your project
+```bash
+# add remote repo
+git remote add gitlab http://gitlab.urlhere/username/projectname.git
+
+## Push repo to gitlab
+git push gitlab
+```
+
+<br><br>
 
 ## How to use Github and GitLab on same machine
 
