@@ -25,6 +25,19 @@ ______________________________________________________
 
 
 
+# Git
+
+## Init repo where no .git folder exist
+```bash
+git init
+```
+
+
+
+
+
+
+
 
 
 ## Command Line Cheat Sheet
