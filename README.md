@@ -196,6 +196,24 @@ printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/Cyb
 ______________________________________________________
 <br><br>
 
+<br><br>
+
+# Log
+
+## Show logs of last commits
+```bash
+git log
+
+# beautify
+git log --all --graph --decorate --oneline --simplify-by-decoration
+```
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
 
 # commit
 
@@ -212,12 +230,6 @@ test (when adding missing tests)
 chore (maintain)
 ```
 
-<br><br>
-
-## Show logs of last commits
-```bash
-git log
-```
 <br><br>
 
 ## commit all changes from all files
