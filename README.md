@@ -187,6 +187,7 @@ ______________________________________________________
 # commit
 
 ## Commit Message Conventions
+- https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
 - https://gist.github.com/stephenparish/9941e89d80e2bc58a153
 ```bash
 feat (feature)
