@@ -186,10 +186,25 @@ ______________________________________________________
 
 # commit
 
+## Commit Message Conventions
+- https://gist.github.com/stephenparish/9941e89d80e2bc58a153
+```bash
+feat (feature)
+fix (bug fix)
+docs (documentation)
+style (formatting, missing semi colons, …)
+refactor
+test (when adding missing tests)
+chore (maintain)
+```
+
+<br><br>
+
 ## Show logs of last commits
 ```bash
 git log
 ```
+<br><br>
 
 ## commit all changes from all files
 ```bash
