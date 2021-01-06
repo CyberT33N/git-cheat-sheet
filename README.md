@@ -330,6 +330,17 @@ git fetch -u origin localbranch:remotebranch
 #
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -343,6 +354,18 @@ git pull
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -353,6 +376,13 @@ ______________________________________________________
 ```bash
 git push
 ```
+<br><br>
+
+# fatal: You are not currently on a branch. To push the history leading to the current (detached HEAD)
+```bash
+git push origin HEAD:branchname --force
+```
+
 
 <br><br>
 
