@@ -529,6 +529,13 @@ git revert id_here
 
 
 
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -538,8 +545,32 @@ ______________________________________________________
 
 ## rebase master branch into feature branch
 ```bash
-git checkout feature git rebase master
+git checkout feature
+git rebase master
 ```
+
+
+<br><br>
+
+
+## difference between merge and rebase (https://www.atlassian.com/de/git/tutorials/merging-vs-rebasing)
+- merge will create a merge commit on the branch where you are merging
+- rebase instead will keep the history of all commits and you can see linear all commits and do not have a merge commit
+
+
+# interactive rebasing
+
+## create interactive rebasing
+```bash
+git checkout feature
+git rebase -i master
+
+# -i will show all commits and display how your your branch would look like after the rebasing
+```
+
+
+
+
 
 
 
