@@ -211,7 +211,21 @@ ______________________________________________________
 # squash
 - https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/
 - With git it’s possible to squash previous commits into one. This is a great way to group certain changes together before sharing them with others.
+```bash
+# * df71a27 - (HEAD feature_x) Updated CSS for new elements (4 minutes ago)
+# * ba9dd9a - Added new elements to page design (15 minutes ago)
+# * f392171 - Added new feature X (1 day ago)
+# * d7322aa - (origin/feature_x) Proof of concept for feature X (3 days ago)
 
+git rebase -i HEAD~3
+
+# text editor will open. Pick the commit you want to squash all others to.
+pick f392171 Added new feature X
+squash ba9dd9a Added new elements to page design
+squash df71a27 Updated CSS for new elements
+
+# * f392171 - Added new feature X (1 day ago)
+```
 
 
 
