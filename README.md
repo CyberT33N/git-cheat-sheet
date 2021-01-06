@@ -319,6 +319,18 @@ git reset --hard origin/master
 ```
 
 <br><br>
+
+## Fetch from specific remote repo
+```bash
+git fetch -u origin localbranch:remotebranch
+
+# What is origin?
+# https://github.com/CyberT33N/git-cheat-sheet#what-is-origin-httpsstackoverflowcomquestions9529497what-is-origin-in-git
+
+#
+```
+
+<br><br>
 ______________________________________________________
 <br><br>
 
