@@ -242,7 +242,7 @@ ______________________________________________________
 git log
 
 # beautify
-git log --all --graph --decorate --oneline --simplify-by-decoration
+git log --all --graph --decorate --oneline
 ```
 
 
