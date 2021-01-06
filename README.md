@@ -232,10 +232,60 @@ git log --all --graph --decorate --oneline --simplify-by-decoration
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
 
+
+# add
+
+
+## add all files in folder recursive
+- You should always add each file manually to prevent mistakes. Only use this command when you are 100% sure.
+```bash
+git add .
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
 
 
 # commit
