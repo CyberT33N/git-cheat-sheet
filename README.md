@@ -365,7 +365,7 @@ ______________________________________________________
 
 ## Show all branches local and remote
 ```bash
-git branch -a
+git branch -av
 ```
 
 <br><br>
