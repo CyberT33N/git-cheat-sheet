@@ -668,6 +668,12 @@ ______________________________________________________
 
 # merge
 
+
+## Merge Request
+- You can request merge request via Dashboard of Gitlab. In GitHub it is called pull request but means the same.
+
+<br><br>
+
 ## Merge Conflict
 - After resolve merge conflict use **git commit**
 
