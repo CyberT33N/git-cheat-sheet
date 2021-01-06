@@ -476,6 +476,37 @@ ______________________________________________________
 git revert id_here
 ```
 
+
+
+
+
+
+
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+# rebase (does same thing like merge)
+
+
+## rebase master branch into feature branch
+```bash
+git checkout feature git rebase master
+```
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -501,6 +532,16 @@ git merge feature master
 # cd into your project and then run:
 rm -rf .git/MERGE*
 ```
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 ______________________________________________________
