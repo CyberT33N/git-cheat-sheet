@@ -282,6 +282,21 @@ git commit -a --allow-empty --allow-empty-message -m ''
 ______________________________________________________
 <br><br>
 
+# What is origin? (https://stackoverflow.com/questions/9529497/what-is-origin-in-git)
+- origin is an alias on your system for a particular remote repository. It's not actually a property of that repository.
+- Remotes are simply an alias that store the URL of repositories. You can see what URL belongs to each remote by using
+```bash
+git remote -v
+```
+
+As example if you have the same repo on github and gitlab you can switch between your remote repos and origin would be just the name. So instead it could be aswell gitlab oder github
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
+
 # fetch (https://git-scm.com/docs/git-fetch)
 
 ## difference between fetch and pull
