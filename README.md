@@ -208,7 +208,18 @@ printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/Cyb
 ______________________________________________________
 <br><br>
 
+# squash
+- https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/
+- With git it’s possible to squash previous commits into one. This is a great way to group certain changes together before sharing them with others.
+
+
+
+
 <br><br>
+______________________________________________________
+<br><br>
+
+
 
 # Log
 
