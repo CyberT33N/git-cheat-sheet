@@ -668,6 +668,20 @@ ______________________________________________________
 
 # merge
 
+## Merge Conflict
+- After resolve merge conflict use **git commit**
+
+<br><br>
+
+## Ignore merge conflicts
+```bash
+# cd into your project and then run:
+rm -rf .git/MERGE*
+```
+
+<br><br>
+
+
 ## merge master branch into feature branch
 ```bash
 git checkout feature
@@ -678,14 +692,6 @@ git checkout feature git merge master
 
 # or in short
 git merge feature master
-```
-
-<br><br>
-
-## Ignore merge conflicts
-```bash
-# cd into your project and then run:
-rm -rf .git/MERGE*
 ```
 
 
