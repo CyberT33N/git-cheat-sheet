@@ -362,7 +362,13 @@ ______________________________________________________
 
 # Branch
 
-<br>
+
+## Show all branches local and remote
+```bash
+git branch -a
+```
+
+<br><br>
 
 ## Get default branch
 ```bash
