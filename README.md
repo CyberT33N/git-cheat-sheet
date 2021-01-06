@@ -282,7 +282,7 @@ git commit -a --allow-empty --allow-empty-message -m ''
 ______________________________________________________
 <br><br>
 
-# fetch
+# fetch (https://git-scm.com/docs/git-fetch)
 
 ## difference between fetch and pull
 - https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch
