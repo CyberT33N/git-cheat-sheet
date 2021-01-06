@@ -246,6 +246,31 @@ git log --all --graph --decorate --oneline --simplify-by-decoration
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+
+# status (https://git-scm.com/docs/git-status)
+- display state of project (current branch and more..)
+- display changes
+
+```bash
+git status
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 ______________________________________________________
