@@ -5,6 +5,12 @@ Git Sheet Sheet with the most needed stuff...
 
 
 
+
+
+
+
+
+
 # Gitlab
 
 ## Guides
@@ -17,12 +23,44 @@ Git Sheet Sheet with the most needed stuff...
 - https://docs.gitlab.com/ee/user/project/quick_actions.html
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
-
-
-
 
 
 # Git
@@ -42,6 +80,49 @@ git init
 
 ## Command Line Cheat Sheet
 - https://about.gitlab.com/images/press/git-cheat-sheet.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -64,6 +145,35 @@ Sometimes you'll read about package or release managers (the people, not the too
 # Forking
 -  https://guides.github.com/activities/forking/#:~:text=After%20using%20GitHub%20by%20yourself,contribute%20to%20someone%20else's%20project.&text=Creating%20a%20%E2%80%9Cfork%E2%80%9D%20is%20producing,repository%20and%20your%20personal%20copy.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -83,6 +193,32 @@ git config --global credential.helper "cache --timeout=3600"
 ```bash
 git config --global credential.helper store
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -113,6 +249,30 @@ git config --global color.ui auto
 ```
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -152,6 +312,44 @@ host github.com
 ssh-add -K ~/.ssh/your_private_key
 reboot
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 ______________________________________________________
@@ -204,6 +402,35 @@ printf "\nWe finished the .sh file :) - Created by Dennis Demand( github.com/Cyb
 
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -229,6 +456,44 @@ squash df71a27 Updated CSS for new elements
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -244,6 +509,24 @@ git log
 # beautify
 git log --all --graph --decorate --oneline
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -286,6 +569,25 @@ git status
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -299,6 +601,19 @@ ______________________________________________________
 ```bash
 git add .
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -367,6 +682,38 @@ git commit -a --allow-empty --allow-empty-message -m ''
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -379,6 +726,49 @@ git remote -v
 ```
 
 As example if you have the same repo on github and gitlab you can switch between your remote repos and origin would be just the name. So instead it could be aswell gitlab oder github
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 ______________________________________________________
@@ -430,6 +820,27 @@ git fetch -u origin localbranch:remotebranch
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -440,6 +851,28 @@ ______________________________________________________
 ```bash
 git pull
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -484,6 +917,45 @@ git push REMOTE_REPO_NAME BRANCH
 ```bash
 git remote | xargs -L1 git push --all
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -551,6 +1023,44 @@ git checkout branch_name
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 ______________________________________________________
@@ -612,6 +1122,43 @@ Host gitlab.company.com
 git remote add REPO_NAME git@gitlab.com:USERNAME/PROJECTNAME.git
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -627,6 +1174,49 @@ git push --force  # force push the last commit to your repo. The deleted commit 
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -638,6 +1228,35 @@ ______________________________________________________
 # use git log to get commit id
 git revert id_here
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -701,6 +1320,40 @@ git rebase -i master
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -749,6 +1402,44 @@ git merge feature master
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -766,6 +1457,37 @@ git stash show
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -778,6 +1500,46 @@ ______________________________________________________
 git rm -f your_file.txt
 git push -f
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -797,6 +1559,46 @@ node_modules/
 ```bash
 touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ; git status
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
@@ -986,6 +1788,52 @@ done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( gi
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 ______________________________________________________
@@ -1006,7 +1854,7 @@ Some stuff inside here..
 
 <br><br>
 
-# TOC (Table of Contents)
+## TOC (Table of Contents)
 ```markdown
 # Some data.. 
 1. [Example](#example)
@@ -1023,11 +1871,32 @@ Some stuff inside here..
 ## [Fourth Example](http://www.fourthexample.com) 
 ```
 
+
+
 <br><br>
 
-# Allowed HTML tags
+## Allowed HTML tags
 - https://gist.github.com/coolaj86/89821fe046623d5503ce5c4133e70506
 ```markdown
 h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p ol ul table thead tbody tfoot blockquote dl dt dd kbd q samp var hr ruby rt rp li tr td th s strike summary details
+```
+
+
+
+
+
+<br><br>
+
+## Tables
+- https://www.tablesgenerator.com/markdown_tables
+```markdown
+|Redis Type|Javascript Type|
+|---|---|
+|string|String|
+|list|Array of String|
+|set|Array of String|
+|hash|Object(keys have String values)|
+|float|String|
+|integer|number|
 ```
 
