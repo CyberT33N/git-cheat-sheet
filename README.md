@@ -1680,6 +1680,79 @@ Switched to a new branch 'version2'
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# cherry-pick (https://git-scm.com/docs/git-cherry-pick)
+- Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit).
+
+When it is not obvious how to apply a change, the following happens:
+
+<br> 1. The current branch and HEAD pointer stay at the last commit successfully made.
+
+<br> 2. The CHERRY_PICK_HEAD ref is set to point at the commit that introduced the change that is difficult to apply.
+
+<br> 3. Paths in which the change applied cleanly are updated both in the index file and in your working tree.
+
+<br> 4. For conflicting paths, the index file records up to three versions, as described in the "TRUE MERGE" section of git-merge[1]. The working tree files will include a description of the conflict bracketed by the usual conflict markers <<<<<<< and >>>>>>>.
+
+<br> 5. No other modifications are made.
+
+<br><br>
+
+
+Syntax:
+```bash
+git cherry-pick [--edit] [-n] [-m parent-number] [-s] [-x] [--ff]
+		  [-S[<keyid>]] <commit>…​
+git cherry-pick (--continue | --skip | --abort | --quit)
+```
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
