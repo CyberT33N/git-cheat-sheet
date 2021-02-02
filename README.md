@@ -1672,6 +1672,65 @@ Switched to a new branch 'version2'
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+
+# Restore (https://git-scm.com/docs/git-restore)
+
+## restore specific file
+```bash
+git restore sample.html
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
