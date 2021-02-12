@@ -1173,12 +1173,15 @@ ______________________________________________________
 <br><br>
 
 # reset
+- **--soft** will be used by default when you use git reset. Use --soft if you want to keep your changes
+- Use **--hard** if you don't care about keeping the changes you made
+
+<br><br>
 
 ## reset last main commit
 ```bash
-git reset --soft HEAD^  # Use --soft if you want to keep your changes
-git reset --hard HEAD^  # Use --hard if you don't care about keeping the changes you made
-
+git reset --soft HEAD^
+git reset --hard HEAD^
 git push --force  # force push the last commit to your repo. The deleted commit will be also deleted from your repo
 ```
 
