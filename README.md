@@ -1316,6 +1316,13 @@ git push --force  # force push the last commit to your repo. The deleted commit 
 
 
 
+<br><br>
+
+## Reset last merge
+```bash
+# cd into your project and then run:
+rm -rf .git/MERGE*
+```
 
 
 
@@ -1500,6 +1507,9 @@ ______________________________________________________
 <br><br>
 
 # merge
+
+
+
 
 
 ## Merge Request
@@ -2211,6 +2221,116 @@ done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( gi
 
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+______________________________________________________
+______________________________________________________
+<br><br>
+
+
+
+# add specific commit to branch
+```javascript
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
