@@ -1307,11 +1307,22 @@ ______________________________________________________
 
 <br><br>
 
-## reset last main commit
+## reset last head commit
 ```bash
+git checkout <branch-to-modify-head>
 git reset --soft HEAD^
 git reset --hard HEAD^
-git push --force  # force push the last commit to your repo. The deleted commit will be also deleted from your repo
+git push -f  # force push the last commit to your repo. The deleted commit will be also deleted from your repo
+```
+
+
+<br><br>
+
+## replace last head commit with another commit
+```bash
+git checkout <branch-to-modify-head>
+git reset --hard <commit-hash-id-to-put-as-head>
+git push -f
 ```
 
 
@@ -2265,22 +2276,6 @@ done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( gi
 
 
 
-
-
-
-
-
-<br><br>
-______________________________________________________
-______________________________________________________
-<br><br>
-
-
-
-# add specific commit to branch
-```javascript
-
-```
 
 
 
