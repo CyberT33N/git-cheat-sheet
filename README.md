@@ -1022,7 +1022,79 @@ git push origin --delete remoteBranchName
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
+______________________________________________________
+______________________________________________________
+<br><br>
+
+# Checkout
+
+<br>
 
 ## switch branch
 ```bash
@@ -1030,7 +1102,64 @@ git checkout branch_name
 ```
 
 
+<br><br>
 
+## Go back to specific commit and reset files
+```bash
+# First clone your project
+git clone git://github.com/facebook/facebook-ios-sdk.git
+
+Then checkout by commi SHA. You can find the SHA in your github/gitlab commit.
+git checkout xxxxxSHA-HERExxxxx
+```
+
+
+
+
+<br><br>
+
+
+## checkout tag
+- If you want to view the versions of files a tag is pointing to, you can do a git checkout of that tag, although this puts your repository in “detached HEAD” state, which has some ill side effects:
+```bash
+$ git checkout v2.0.0
+Note: switching to 'v2.0.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 99ada87... Merge pull request #89 from schacon/appendix-final
+
+$ git checkout v2.0-beta-0.1
+Previous HEAD position was 99ada87... Merge pull request #89 from schacon/appendix-final
+HEAD is now at df3f601... Add atlas.json and cover image
+
+
+
+
+
+
+
+
+
+
+In “detached HEAD” state, if you make changes and then create a commit, the tag will stay the same, but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will generally want to create a branch:
+
+$ git checkout -b version2 v2.0.0
+Switched to a new branch 'version2'
+```
 
 
 
@@ -1588,51 +1717,6 @@ git tag -d v1.4-lw
  
  
  
-
-<br><br>
-
-## checkout tag
-- If you want to view the versions of files a tag is pointing to, you can do a git checkout of that tag, although this puts your repository in “detached HEAD” state, which has some ill side effects:
-```bash
-$ git checkout v2.0.0
-Note: switching to 'v2.0.0'.
-
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
-
-  git switch -c <new-branch-name>
-
-Or undo this operation with:
-
-  git switch -
-
-Turn off this advice by setting config variable advice.detachedHead to false
-
-HEAD is now at 99ada87... Merge pull request #89 from schacon/appendix-final
-
-$ git checkout v2.0-beta-0.1
-Previous HEAD position was 99ada87... Merge pull request #89 from schacon/appendix-final
-HEAD is now at df3f601... Add atlas.json and cover image
-
-
-
-
-
-
-
-
-
-
-In “detached HEAD” state, if you make changes and then create a commit, the tag will stay the same, but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will generally want to create a branch:
-
-$ git checkout -b version2 v2.0.0
-Switched to a new branch 'version2'
-```
-
 
 
 
