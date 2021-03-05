@@ -861,8 +861,15 @@ ______________________________________________________
 git pull
 ```
 
+<br><br>
 
 
+# force pull by deleting last local changes
+- Download latest version of your repo
+```bash
+git reset --hard HEAD
+git pull
+```
 
 
 
