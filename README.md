@@ -2391,7 +2391,14 @@ ______________________________________________________
 # Markdown
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
+
+
+<br><br>
+
+
 ## Colabsing menu
+
+<br>
 
 #### Code:
 ```markdown
@@ -2415,6 +2422,7 @@ Some stuff inside here..
 
 
 <br><br>
+______________________________________________________
 <br><br>
 
 
@@ -2463,7 +2471,9 @@ Some stuff inside here..
 
 
 
+
 <br><br>
+______________________________________________________
 <br><br>
 
 ## Allowed HTML tags
@@ -2476,6 +2486,16 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 
 
 
+
+
+
+
+
+
+
+
+<br><br>
+______________________________________________________
 <br><br>
 
 ## Tables
@@ -2517,9 +2537,10 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 
 
 
-<br><br>
-<br><br>
 
+<br><br>
+______________________________________________________
+<br><br>
 ## Images
 
 <br>
@@ -2545,7 +2566,9 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 
 
 
+
 <br><br>
+______________________________________________________
 <br><br>
 
 ## Listing
