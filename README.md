@@ -2392,6 +2392,8 @@ ______________________________________________________
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 ## Colabsing menu
+
+#### Code:
 ```markdown
 # Header name
 <details><summary>Click to expand..</summary>
@@ -2399,13 +2401,26 @@ Some stuff inside here..
 </details>
 ```
 
+<br>
+
+#### Live:
+<details><summary>Click to expand..</summary>
+Some stuff inside here..
+</details>
+
+
+
+
+
 
 
 <br><br>
-
+<br><br>
 
 
 ## TOC (Table of Contents)
+
+#### Code:
 ```markdown
 # Some data.. 
 1. [Example](#example)
@@ -2422,8 +2437,33 @@ Some stuff inside here..
 ## [Fourth Example](http://www.fourthexample.com) 
 ```
 
+<br>
+
+#### Live:
+# Some data.. 
+1. [Example](#example)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
 
+## Example
+## Example2
+## Third Example
+
+
+## [Fourth Example](http://www.fourthexample.com) 
+
+
+
+
+
+
+
+
+
+
+<br><br>
 <br><br>
 
 ## Allowed HTML tags
@@ -2440,6 +2480,10 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 
 ## Tables
 - https://www.tablesgenerator.com/markdown_tables
+
+<br>
+
+#### Code:
 ```markdown
 |Redis Type|Javascript Type|
 |---|---|
@@ -2451,20 +2495,62 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 |integer|number|
 ```
 
+<br>
 
+#### Live:
+|Redis Type|Javascript Type|
+|---|---|
+|string|String|
+|list|Array of String|
+|set|Array of String|
+|hash|Object(keys have String values)|
+|float|String|
+|integer|number|
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
 <br><br>
 
 ## Images
+
+<br>
+
+#### Code:
 ```markdown
 ![Test Image 4](https://github.com/tograh/testrepository/3DTest.png)
 ```
 
+<br>
+
+#### Live:
+![Test Image 4](https://github.com/tograh/testrepository/3DTest.png)
+
+
+
+
+
+
+
+
+
 
 
 
 <br><br>
+<br><br>
 
 ## Listing
+
+#### Code:
 ```markdown
 - [Root Topic](#root-topic)
   - [1. Overview](#1-overview)
@@ -2472,3 +2558,12 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
     - [2.1. Message composer](#21-message-composer)
     - [2.2 Message senders](#22-message-senders)
 ```
+
+<br>
+
+#### Live:
+- [Root Topic](#root-topic)
+  - [1. Overview](#1-overview)
+  - [2 Basic components](#2-basic-components)
+    - [2.1. Message composer](#21-message-composer)
+    - [2.2 Message senders](#22-message-senders)
