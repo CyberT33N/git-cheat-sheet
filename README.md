@@ -1449,13 +1449,24 @@ git revert id_here
 ______________________________________________________
 <br><br>
 
-# rebase (does same thing like merge)
+# rebase
+- does same thing like merge
+
+<br><br>
 
 
 ## rebase master branch into feature branch
 ```bash
 git checkout feature
+git commit -m "any cool changes"
+
+git checkout master
+git push
+
+git checkout feaure
 git rebase master
+
+git push
 ```
 
 
