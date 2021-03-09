@@ -690,7 +690,7 @@ git commit -a --allow-empty --allow-empty-message -m ''
 
 
 
-## replace last commit (--amend)
+## delete last commit (amend)
 ```bash
 git add .
 git commit --amend -m "an updated commit message"
