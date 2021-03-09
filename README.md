@@ -600,7 +600,12 @@ ______________________________________________________
 - You should always add each file manually to prevent mistakes. Only use this command when you are 100% sure.
 ```bash
 git add .
+
+# add parent folder
+git add ..
 ```
+
+
 
 
 
