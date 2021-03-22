@@ -1631,6 +1631,15 @@ ______________________________________________________
 
 # stash (https://git-scm.com/docs/git-stash)
 - Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.
+```bash
+git stash
+```
+
+
+<br><br>
+
+## Guide
+- https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning
 
 <br><br>
 
@@ -1639,6 +1648,33 @@ ______________________________________________________
 git stash show
 ```
 
+<br><br>
+
+## list your stashed changes
+```bash
+git stash list
+```
+
+<br><br>
+
+## apply most recent stash
+```bash
+git stash apply
+```
+
+<br><br>
+
+## apply older stash
+```bash
+git stash apply stash@{n}
+```
+
+<br><br>
+
+## undo stash
+```bash
+git stash pop
+```
 
 
 
