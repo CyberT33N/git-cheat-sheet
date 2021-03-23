@@ -11,6 +11,26 @@ Git Sheet Sheet with the most needed stuff...
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Gitlab
 
 ## Guides
@@ -21,6 +41,9 @@ Git Sheet Sheet with the most needed stuff...
 
 # Quick Actions
 - https://docs.gitlab.com/ee/user/project/quick_actions.html
+
+
+
 
 
 
@@ -107,6 +130,22 @@ git init
 
 
 
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+## Most asked questions
+
+<br><br>
+
+#### How to checkout on another branch after you do local changes on your current branch?
+- You may get a error that you have to commit or stash your current changes before you can do a checkout. Here are your solutions:
+  - Delete old branch where we want to checkout
+  - Create commit on the current branch
+  - Stash
 
 
 
