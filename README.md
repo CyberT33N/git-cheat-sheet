@@ -1694,6 +1694,15 @@ git stash show
 git stash list
 ```
 
+
+
+
+
+<br><br><br><br>
+
+## Difference between pop & apply (https://stackoverflow.com/questions/15286075/difference-between-git-stash-pop-and-git-stash-apply).)
+- git stash pop throws away the (topmost, by default) stash after applying it, whereas git stash apply leaves it in the stash list for possible later reuse (or you can then git stash drop it).
+
 <br><br>
 
 ## apply most recent stash
@@ -1710,13 +1719,23 @@ git stash apply stash@{n}
 
 <br><br>
 
-## undo stash
+## apply stash but Throws away the (topmost, by default) stash after applying it. (https://git-scm.com/docs/git-stash#Documentation/git-stash.txt-pop--index-q--quietltstashgt)
 ```bash
 git stash pop
 ```
 
 
 
+
+
+
+
+<br><br><br><br>
+
+## Remove a single stash entry from the list of stash entries.
+```bash
+git stash drop
+```
 
 
 
