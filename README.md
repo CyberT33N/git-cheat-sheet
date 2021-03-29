@@ -1726,6 +1726,12 @@ git stash pop
 
 
 
+<br><br>
+
+## go back to latest local state after you did pop/apply
+```bash
+git reset --hard HEAD^
+```
 
 
 
