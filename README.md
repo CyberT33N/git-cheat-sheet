@@ -1145,12 +1145,22 @@ ______________________________________________________
 
 # Checkout
 
-<br>
+<br><br>
 
 ## switch branch
 ```bash
 git checkout branch_name
 ```
+
+<br><br>
+
+## delete local files and switch back to state of remote branch
+- When you locally delete a branch and then checkout again on it you will download the latest files from your remote branch.
+```bash
+git branch -D yourbranch
+git checkout yourbranch
+```
+
 
 
 <br><br>
