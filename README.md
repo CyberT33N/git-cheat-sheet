@@ -15,6 +15,12 @@ Git Sheet Sheet with the most needed stuff...
 
 
 
+# Postman
+
+<br><br>
+
+## Import Repo to Postman
+- https://www.youtube.com/watch?v=llfjyQbyeUQ
 
 
 
@@ -24,6 +30,17 @@ Git Sheet Sheet with the most needed stuff...
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+
+# Git
+
+## Init repo where no .git folder exist
+```bash
+git init
+```
 
 
 
