@@ -62,10 +62,68 @@ git init
 
 
 
+<br><br><br><br>
 
 
 
+# CI/CD
 
+<br><br>
+
+## .gitlab-ci.yml
+- This file will automatically create/trigger your CI/CD once you push your commit.
+
+#### Example
+```yml
+image: node:12
+
+stages:
+  - stage1
+  - stage2
+  - stage3
+setup:
+  stage: stage1
+  script: npm i
+  artifacts:
+    paths:
+      - "node_modules"
+    expire_in: 1 day
+unit-test:
+  stage: stage2
+  script: npm run unit-test
+  needs:
+    - job: setup
+      artifacts: true
+      
+integration-test:
+  stage: stage2
+  script: npm run integartion-test
+  needs:
+    - job: setup
+      artifacts: true
+publish:
+  stage: stage3
+  only:
+    - master
+  script: npm login asdasdasdqdasd && npm publish
+```
+
+
+<br><br>
+
+
+
+## only
+- Use specific branch
+
+## artifacts
+- Re-use files from previous jobs
+
+## needs 
+- Access your artifacts
+
+## image
+- Define the docker image where you want to run your stages on
 
 
 
