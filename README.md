@@ -2159,7 +2159,11 @@ git rm -f your_file.txt
 git push -f
 ```
 
-
+	
+## delete folder recursive from disk and repo
+```bash
+git rm -rf --cached .idea
+```
 
 
 
