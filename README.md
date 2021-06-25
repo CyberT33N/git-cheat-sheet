@@ -1149,8 +1149,12 @@ git push origin --delete remoteBranchName
 
 
 
+<br><br>
 
-
+## rename branch
+```bash
+git branch -m "old-branch-name-here" "new-branch-name-here"
+```
 
 
 
