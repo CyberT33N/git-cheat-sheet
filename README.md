@@ -1419,6 +1419,12 @@ Check it out by running::
     git remote show origin
 
 
+Remove all remote repos
+================
+```branch
+for remote_name in $(git remote); do git remote remove "${remote_name}"; done
+```
+	
 Per-branch
 ==========
 
