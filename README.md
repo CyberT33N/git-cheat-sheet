@@ -1397,8 +1397,8 @@ Remotes
 
 Suppose your git remotes are set up like this::
 
-    git remote add github_ProjectName git@github.com:muccg/my-project.git
-    git remote add bb_ProjectName git@bitbucket.org:ccgmurdoch/my-project.git
+    git remote add github git@github.com:muccg/my-project.git
+    git remote add bb git@bitbucket.org:ccgmurdoch/my-project.git
 
 The ``origin`` remote probably points to one of these URLs.
 
@@ -1419,6 +1419,17 @@ Check it out by running::
     git remote show origin
 
 
+Then run::
+	
+    git push github && git push gitlab
+	
+	
+Add this to your ~/.gitconfig::
+	
+    [alias]
+        pushall = "!f(){ for i in `git remote`; do git push $i; done; };f"
+	
+	
 Remove all remote repos
 ================
 ```branch
