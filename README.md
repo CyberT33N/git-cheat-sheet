@@ -43,7 +43,14 @@ git init
 ```
 
 
-## Upload/Commit bigger files than 100mb (https://git-lfs.github.com/)
+<br><br>
+<br><br>
+
+## Git LFS
+
+<br><br>
+
+#### Upload/Commit bigger files than 100mb (https://git-lfs.github.com/)
 ```bash
 # Download (https://github.com/git-lfs/git-lfs/releases/latest) and install the Git command line extension. Once downloaded and installed, set up Git LFS for your user account by running:
 git lfs install
@@ -62,6 +69,13 @@ git commit -m "Add design file"
 git push origin main
 ```
 
+<br><br>
+
+
+#### Uninstall from repo
+```bash
+git lfs uninstall
+```
 
 
 
