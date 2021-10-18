@@ -1155,8 +1155,17 @@ ______________________________________________________
 <br><br>
 
 # Branch
+	
 
 
+## Fixing the “GH001: Large files detected. You may want to try Git Large File Storage.”
+- It turned out that GitHub only allows for 100 MB file. The problem is that I can’t simply remove the file because it is tracked inside the previous commits so I have to remove this file completely from my repo. The command that allow you to do it is:
+```bash
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch fixtures/11_user_answer.json'
+```
+
+<br><br>	
+	
 ## Show all branches local and remote
 ```bash
 git branch -av
