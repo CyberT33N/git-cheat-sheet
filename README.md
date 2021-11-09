@@ -864,7 +864,13 @@ git commit -a --allow-empty --allow-empty-message -m ''
 ```bash
 git add .
 git commit --amend -m "an updated commit message"
-git push --force
+git push -f
+
+
+# Skip commit message dialog by using message from last commit
+git add .
+git commit --amend --reuse-message HEAD 
+git push -f
 ```
 
 
