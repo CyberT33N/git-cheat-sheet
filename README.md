@@ -860,7 +860,7 @@ git commit -a --allow-empty --allow-empty-message -m ''
 
 
 
-## delete last commit (amend)
+## overwrite/delete last commit (amend)
 ```bash
 git add .
 git commit --amend -m "an updated commit message"
