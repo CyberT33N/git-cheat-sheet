@@ -1740,6 +1740,13 @@ rm -rf .git/MERGE*
 ```
 
 
+<br><br>
+
+## Cancel current merge process
+```bash
+git reset --hard HEAD
+git clean -d -f 
+```
 
 
 
