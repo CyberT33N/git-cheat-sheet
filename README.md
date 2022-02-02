@@ -1927,6 +1927,61 @@ git rebase -i master
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# Remove/Delete
+
+<br><br>
+
+## Remove folder and then create commit
+```bash
+git add -A
+git commit -m 'deleting directory'
+git push origin master
+```
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 
 
 
