@@ -2869,6 +2869,21 @@ done; wait; printf "\nWe finished the .sh file :) - Created by Dennis Demand( gi
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+## Error
+	
+	
+<br><br>
+
+# fatal: in unpopulated submodule
+```
+git rm --cached foldernamehere -f
+```
+
+
 
 
 
