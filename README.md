@@ -3025,8 +3025,15 @@ ______________________________________________________
 git rm --cached foldernamehere -f
 ```
 
+<br><br>
 
-
+# You have divergent branches and need to specify how to reconcile them
+```
+git pull --ff-only
+	
+## If you get error fatal: Not possible to fast-forward, aborting
+git pull --rebase
+```
 
 
 
