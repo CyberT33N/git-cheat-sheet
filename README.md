@@ -1010,9 +1010,7 @@ git push -f
 
 
 # Skip commit message dialog by using message from last commit
-git add .
-git commit --amend --reuse-message HEAD 
-git push -f
+git add . && git commit --amend --reuse-message HEAD && git push -f
 ```
 
 
