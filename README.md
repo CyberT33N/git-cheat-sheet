@@ -1710,6 +1710,7 @@ Suppose your git remotes are set up like this::
 
     git remote add github git@github.com:muccg/my-project.git
     git remote add bb git@bitbucket.org:ccgmurdoch/my-project.git
+    git remote add gitlabInternal git@gitlab.local.com:websites/my-project.git
 
 The ``origin`` remote probably points to one of these URLs.
 
@@ -1721,6 +1722,7 @@ To set up the push URLs do this::
 
     git remote set-url --add --push origin git@github.com:muccg/my-project.git
     git remote set-url --add --push origin git@bitbucket.org:ccgmurdoch/my-project.git
+    git remote set-url --add --push gitlabInternal git@gitlab.local.com:websites/my-project.git
 
 It will change the ``remote.origin.pushurl`` config entry. Now pushes
 will send to both of these destinations, rather than the fetch URL.
