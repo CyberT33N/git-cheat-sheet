@@ -807,7 +807,7 @@ squash df71a27 Updated CSS for new elements
 
 
 
-<br><br>
+<br><br><br><br>
 ______________________________________________________
 <br><br>
 
@@ -815,12 +815,37 @@ ______________________________________________________
 
 # Log
 
+
+
+
+<br><br>
+
 ## Show logs of last commits
 ```bash
 git log
 
 # beautify
 git log --all --graph --decorate --oneline
+```
+
+
+
+
+
+
+
+<br><br>
+
+## Show all commit hashes/id
+```bash
+# This will be for all branches
+git log --pretty=format:"%h"
+
+# This will be for specific branch
+git log main..feat/CCS-1114/new-data-structure/main --pretty=format:"%h"
+
+## This will be for specific branch and show more details than only commit hash
+git log main..feat/CCS-1114/new-data-structure/main --oneline
 ```
 
 
@@ -853,10 +878,7 @@ git log --all --graph --decorate --oneline
 
 
 
-
-
-
-<br><br>
+<br><br><br><br>
 ______________________________________________________
 <br><br>
 
