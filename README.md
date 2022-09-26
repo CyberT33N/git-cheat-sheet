@@ -3287,6 +3287,64 @@ ______________________________________________________
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+## Workflows
+- The next section does contain example of what commands to use in different all day scenarios
+
+
+### Create new branch and use current code status without git add/stash
+- You can just create a new switch and then checkout on it. The current code from your old branch will be copied in the new you had created and where you checkout.
+```bash
+git branch my-test-branch
+git checkout my-test-branch
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
