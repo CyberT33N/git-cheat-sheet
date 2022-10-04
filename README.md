@@ -84,6 +84,25 @@ git push
 
 
 
+<br><br>
+<br><br>
+
+### Rebase
+
+<br><br>
+
+#### Squash merge branch into current branch without merge conflicts
+```bash
+git fetch -u origin develop:develop
+git rebase develop
+
+# Resolve Merge Conflicts
+# If there are merge conflicts and you solve them use
+# git add .
+# git rebase --continue
+
+git push -f
+```
 
 
 
