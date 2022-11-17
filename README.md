@@ -665,7 +665,7 @@ ______________________________________________________
 ssh-keygen -t ecdsa -b 521
 ```
 <br>
-Next add your public key to your git settings:
+Next add your public key to your git settings (~/.ssh/id_ecdsa.pub):
 <br>- https://gitlab.com/-/profile/keys
 <br>- https://github.com/settings/keys
 
