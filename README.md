@@ -71,12 +71,22 @@ git checkout my-test-branch
 ```bash
 git checkout sourceBranch
 git merge --squash targetBranch
-git add .
-git commit -m ""
+git commit -m "Test"
 git push
 ```
 
+<br><br>
 
+#### Squash merge branch into current branch with merge conflicts
+```bash
+git checkout sourceBranch
+git merge --squash targetBranch
+
+# Merge Conflicts with your IDE
+
+git commit -m "Test"
+git push
+```
 
 
 
