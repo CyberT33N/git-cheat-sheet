@@ -708,10 +708,13 @@ host github.com
  
 ## How to store passphrase
 ```bash
-# Method 1
+# Method 1 - Use this command on your private key e.g.
+ssh-add /home/t33n/.ssh/id_ecdsa
+
+# Method 2 (Not sure if this will work)
 ssh-add
 
-# Method 2 - Add private key to keychain. You must 1 time verify it manually and then it will be saved
+# Method 3 - Add private key to keychain. You must 1 time verify it manually and then it will be saved
 ssh-add -K ~/.ssh/your_private_key
 reboot
 ```
