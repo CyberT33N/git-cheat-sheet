@@ -29,10 +29,23 @@ Git Sheet Sheet with the most needed stuff...
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
 
+# Install
+```shell
+sudo apt-get install git
+```
 
+<br><br>
 
-
+# Uninstall
+```shell
+sudo apt-get purge git
+sudo apt-get autoremove
+sudo apt-get install git
+```
 
 
 
@@ -3426,9 +3439,41 @@ ______________________________________________________
 
 <br>
 
-#### Live:
+### Live:
 - [Root Topic](#root-topic)
   - [1. Overview](#1-overview)
   - [2 Basic components](#2-basic-components)
     - [2.1. Message composer](#21-message-composer)
     - [2.2 Message senders](#22-message-senders)
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+## FAQ
+
+### Git freezing on new line when try to git push
+```shell
+# First remove git
+sudo apt-get purge git
+sudo apt-get autoremove
+sudo apt-get install git
+
+## If you used a passphrase which was stored before you must save it again:
+ssh-agent bash
+ssh-add
+```
+
