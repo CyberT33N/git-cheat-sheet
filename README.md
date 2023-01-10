@@ -3473,7 +3473,7 @@ sudo apt-get autoremove
 sudo apt-get install git
 
 ## If you used a passphrase which was stored before you must save it again:
-ssh-agent bash
+ssh-agent zsh # If you do not use ZSH then make ssh-agent bash
 ssh-add
 ```
 
