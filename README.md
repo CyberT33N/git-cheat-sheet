@@ -133,11 +133,60 @@ git push -f
 
 
 
+<br><br>
+<br><br>
+
+
+
+### Pull
+
+<br><br>
+
+#### Current branch is local outdated and there are changes remote
+```bash
+git pull
+## Read the text which comes from git and then make git pull with the merge option. If it comes resolve merge conflicts
+```
 
 
 
 
 
+
+
+
+<br><br>
+<br><br>
+
+
+### Branches
+
+#### develop, feature and feature-dev branch
+```
+# Pull from latest main branch in this case develop and then create feature branch
+git checkout develop
+git pull
+git branch fix/TICKET-232/edit-custom-block/main
+
+# Create feature-dev branch, checkout to it and then work on your ticket
+git checkout fix/TICKET-232/edit-custom-block/main
+git branch fix/TICKET-232/edit-custom-block/kho
+git checkout fix/CCS-232/edit-custom-block/kho
+
+# Merge feature-dev branch into feature branch
+git checkout fix/TICKET-232/edit-custom-block/main
+git merge --squash fix/TICKET-232/edit-custom-block/kho
+git commit -m "fix(TICKET-232): Edit template"
+
+# Rebase develop branch on feature branch
+git fetch -u origin develop:develop
+git rebase develop
+
+# Push feature branch
+git push --force --set-upstream origin fix/TICKET-232/edit-custom-block/main
+
+# Create MR/PR
+```
 
 
 
@@ -349,41 +398,6 @@ publish:
 
 
 
-
-<br><br>
-______________________________________________________
-<br><br>
-
-# Workflows
-
-<br><br>
-
-## Example 1
-```
-# Pull from latest main branch in this case develop and then create feature branch
-git checkout develop
-git pull
-git branch fix/TICKET-232/edit-custom-block/main
-
-# Create feature-dev branch, checkout to it and then work on your ticket
-git checkout fix/TICKET-232/edit-custom-block/main
-git branch fix/TICKET-232/edit-custom-block/kho
-git checkout fix/CCS-232/edit-custom-block/kho
-
-# Merge feature-dev branch into feature branch
-git checkout fix/TICKET-232/edit-custom-block/main
-git merge --squash fix/TICKET-232/edit-custom-block/kho
-git commit -m "fix(TICKET-232): Edit template"
-
-# Rebase develop branch on feature branch
-git fetch -u origin develop:develop
-git rebase develop
-
-# Push feature branch
-git push --force --set-upstream origin fix/TICKET-232/edit-custom-block/main
-
-# Create MR/PR
-```
 
 
 
