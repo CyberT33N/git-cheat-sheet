@@ -101,6 +101,20 @@ git commit -m "Test"
 git push
 ```
 
+<br><br>
+
+#### Revert merge if no commit was made by deleting the branch locally
+```bash
+git checkout otherBranch
+git branch -D targetBranch # will delete the branch local
+git checkout targetBranch
+```
+
+
+
+
+
+
 
 
 
