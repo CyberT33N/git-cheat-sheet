@@ -1962,6 +1962,10 @@ Add this to your ~/.gitconfig::
     [alias]
         pushall = "!f(){ for i in `git remote`; do git push $i; done; };f"
 	
+    [alias]
+        pushallforce = "!f(){ for i in `git remote`; do git push -f $i; done; };f"
+
+	
 	
 Remove all remote repos
 ================
