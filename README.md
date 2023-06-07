@@ -1851,7 +1851,66 @@ git remote -v
 
 ## How to use Github and GitLab on same machine
 
+	
 Pushing to Multiple Git Repos
+
+## All in one script example
+```shell
+
+mkdir ~/Projects
+cd ~/Projects
+git clone git@github.com:CyberT33N/dev-environment.git
+git clone git@github.com:CyberT33N/errormanager.git
+git clone git@github.com:CyberT33N/puppeteerservices.git
+git clone git@github.com:CyberT33N/errormanager.git
+
+	
+# ---- DEV ENVIRONMENT ----
+cd ~/Projects/dev-environment
+git remote add github git@github.com:CyberT33N/dev-environment.git
+git remote add bb git@bitbucket.org:CyberT33N/dev-environment.git
+git remote add gitlab git@gitlab.com:CyberT33N/dev-environment.git
+git remote add gitlabInternal git@gitlab.local.com:CyberT33N/dev-environment.git
+
+git remote set-url --add --push origin git@github.com:CyberT33N/dev-environment.git
+git remote set-url --add --push origin git@bitbucket.org:CyberT33N/dev-environment.git
+git remote set-url --add --push origin git@gitlab.com:CyberT33N/dev-environment.git
+git remote set-url --add --push gitlabInternal git@gitlab.local.com:CyberT33N/dev-environment.git
+
+
+# ---- ERROR MANAGER ----
+cd ~/Projects/errormanager
+git remote add github git@github.com:CyberT33N/errormanager.git
+git remote add bb git@bitbucket.org:CyberT33N/errormanager.git
+git remote add gitlab git@gitlab.com:CyberT33N/errormanager.git
+git remote add gitlabInternal git@gitlab.local.com:CyberT33N/errormanager.git
+
+git remote set-url --add --push origin git@github.com:CyberT33N/errormanager.git
+git remote set-url --add --push origin git@bitbucket.org:CyberT33N/errormanager.git
+git remote set-url --add --push origin git@gitlab.com:CyberT33N/errormanager.git
+git remote set-url --add --push gitlabInternal git@gitlab.local.com:CyberT33N/errormanager.git
+
+
+# ---- Puppeteerservices ----
+cd ~/Projects/puppeteerservices
+git remote add github git@github.com:CyberT33N/puppeteerservices.git
+git remote add bb git@bitbucket.org:CyberT33N/puppeteerservices.git
+git remote add gitlab git@gitlab.com:CyberT33N/puppeteerservices.git
+git remote add gitlabInternal git@gitlab.local.com:CyberT33N/puppeteerservices.git
+
+git remote set-url --add --push origin git@github.com:CyberT33N/puppeteerservices.git
+git remote set-url --add --push origin git@bitbucket.org:CyberT33N/puppeteerservices.git
+git remote set-url --add --push origin git@gitlab.com:CyberT33N/puppeteerservices.git
+git remote set-url --add --push gitlabInternal git@gitlab.local.com:CyberT33N/puppeteerservices.git
+
+
+
+
+```
+	
+	
+	
+	
 -----------------------------
 
 If a project has to have multiple git repos (e.g. Bitbucket and
