@@ -729,12 +729,16 @@ ______________________________________________________
 ## Your custom name keys will be stored in current directoy where you executed the command. E.g. ~/samplePubKey.pub
 ssh-keygen -t ecdsa -b 521
 ```
-<br>
-Next add your public key to your git settings (~/.ssh/id_ecdsa.pub):
-<br>- https://gitlab.com/-/profile/keys
-<br>- https://github.com/settings/keys
 
 <br><br>
+
+Next add your public key to your git settings (~/.ssh/id_ecdsa.pub):
+- https://gitlab.com/-/profile/keys
+- https://github.com/settings/keys
+- https://bitbucket.org/account/settings/ssh-keys/
+
+<br><br>
+
 Now when you clone your repo via command line you will get asked for passphrase to verify. This will be only done 1 time.
 
 <br><br>
