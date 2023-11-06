@@ -2479,6 +2479,15 @@ git stash show
 git stash list
 ```
 
+<br><br>
+
+## create new branch from stash
+```bash
+1. git stash
+2. git stash list
+3. git stash branch my_feature_branch stash@{0}
+```
+
 
 
 
