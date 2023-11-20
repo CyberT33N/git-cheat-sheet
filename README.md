@@ -2914,17 +2914,46 @@ ______________________________________________________
 ______________________________________________________
 <br><br>
 
+<br><br>
+
+# .gitkeep
+
+<br><br>
+
+## Keep empty folder but still ignore all files inside
+```
+test-db-dumps/test_333/*
+!test-db-dumps/test_333/.gitkeep
+```
+- Create .gitkeep file at test-db-dumps/test_333/.gitkeep
+
+
+
+<br><br>
+<br><br>
+
 # .gitignore
 - Ignore files and folders for push
 ```bash
-node_modules/
+node_modules
+test/*
 ```
+- You can use relative paths. e.g. your project is abc/hey/test/test.json you can just use hey/test
 
 <br><br>
 
 ## Create .gitignore file and include node_modules folder
 ```bash
 touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ; git status
+```
+
+<br><br>
+
+## Remove files that are already commited but the folder is listed in .gitignore
+```bash
+# First delete the files manually
+# Then
+git rm --cached -rf 'lib/main/test/test-db-dumps/test_333'
 ```
 
 
