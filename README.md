@@ -2951,9 +2951,7 @@ touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached nod
 
 ## Remove files that are already commited but the folder is listed in .gitignore
 ```bash
-# First delete the files manually
-# Then
-git rm --cached -rf 'lib/main/test/test-db-dumps/test_333'
+git rm -rf 'lib/main/test/test-db-dumps/test_333'
 ```
 
 
