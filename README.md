@@ -2062,6 +2062,45 @@ git remote add REPO_NAME git@gitlab.com:USERNAME/PROJECTNAME.git
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# clean
+
+<br><br>
+
+## Clean all untracked files that will be ignored by .gitignore
+```
+git clean -f -d -x -i -e node_modules
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
