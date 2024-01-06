@@ -725,7 +725,7 @@ ______________________________________________________
 
 ## How to generate Private & Public Key (https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair)
 ```bash
-## When you create the default file name with the guided setup from below your key will keys will be saved to ~/.ssh/
+## Default your key will keys will be saved to ~/.ssh/
 ## Your custom name keys will be stored in current directoy where you executed the command. E.g. ~/samplePubKey.pub
 ssh-keygen -t ecdsa -b 521
 ```
