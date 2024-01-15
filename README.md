@@ -2135,7 +2135,36 @@ git reset --hard <commit-hash-id-to-put-as-head>
 git push -f
 ```
 
+<br><br>
 
+## Remove specific amount of head commits but keep local changes
+```bash
+# git log um zu checken wie viele der letzten Commits vereint werden sollen. Sonst kann man es auch im MR sehen
+
+# Gehe zum gewünschten Branch
+git checkout dein_branch
+
+# Dynamisch die letzten z.b. 4 Commits lokal löschen
+# Alternativ kannst du es auch einzeln machen mit git reset --soft HEAD^ was die sichere Variante ist..
+git reset --soft HEAD~4
+
+# Sicherstellen, dass die betroffenen Commits oben nicht mehr in der History auftauchen:
+git log
+
+# Sicherstellen, dass die Dateien die vorher committed waren da sind
+git status
+
+# Die vorher committeten Dateien stagen, zb:
+git add .
+
+# sicherstellen, dass die gewollten Dateien gestaged sind:
+git status
+
+mkbranch
+
+# force pushen, um die commit history im gitlab mit der lokalen zu überschreiben
+git push -f
+```
 
 <br><br>
 
