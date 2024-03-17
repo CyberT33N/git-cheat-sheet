@@ -70,6 +70,45 @@ sudo apt-get install git
 
 
 
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+______________________________________________________
+<br><br>
+<br><br>
+
+# Terminal Editor
+
+<br><br>
+
+## Nano
+```shell
+git config core.editor "nano"
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
