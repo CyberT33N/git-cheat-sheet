@@ -783,6 +783,7 @@ ______________________________________________________
 ## Default your key will keys will be saved to ~/.ssh/
 ## Your custom name keys will be stored in current directoy where you executed the command. E.g. ~/samplePubKey.pub
 ssh-keygen -t ecdsa -b 521
+# ssh-keygen -t ecdsa -b 521 -f /home/tuserNameHere/.ssh/id_ecdsa_git
 ```
 
 <br><br>
