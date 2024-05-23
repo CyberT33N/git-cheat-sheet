@@ -779,11 +779,12 @@ ______________________________________________________
 - GitLab (https://docs.gitlab.com/ee/ssh/README.html)
 
 ## How to generate Private & Public Key (https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair)
+- It is recommended to create multiple ssh keys and and not use 1 for everything
 ```bash
 ## Default your key will keys will be saved to ~/.ssh/
 ## Your custom name keys will be stored in current directoy where you executed the command. E.g. ~/samplePubKey.pub
-ssh-keygen -t ecdsa -b 521
-# ssh-keygen -t ecdsa -b 521 -f /home/tuserNameHere/.ssh/id_ecdsa_git
+# ssh-keygen -t ecdsa -b 521
+ssh-keygen -t ecdsa -b 521 -f /home/tuserNameHere/.ssh/github/id_ecdsa
 ```
 
 <br><br>
@@ -804,24 +805,25 @@ Now when you clone your repo via command line you will get asked for passphrase 
 # Method 1 - Edit ~/.ssh/config and enter:
 host github.com
  HostName github.com
- IdentityFile ~/.ssh/your_private_key
+ IdentityFile /home/tuserNameHere/.ssh/github/id_ecdsa
  User git
  ```
  
 ## How to store passphrase
+- Add your private key. If you have have multiple ssh keys and you e.g. create the new ssh key here /home/tuserNameHere/.ssh/github/id_ecdsa then you have to add it in order to use it on your machine
 ```bash
 # Method #1
 eval $(ssh-agent -s)
-ssh-add ~/.ssh/dein_private_key
+ssh-add /home/tuserNameHere/.ssh/github/id_ecdsa
 
 # Method 2 - Use this command on your private key e.g.
-ssh-add /home/t33n/.ssh/id_ecdsa
+ssh-add /home/tuserNameHere/.ssh/github/id_ecdsa
 
 # Method 3 (Not sure if this will work)
 ssh-add
 
 # Method 4 - Add private key to keychain. You must 1 time verify it manually and then it will be saved
-ssh-add -K ~/.ssh/your_private_key
+ssh-add -K /home/tuserNameHere/.ssh/github/id_ecdsa
 reboot
 ```
 
