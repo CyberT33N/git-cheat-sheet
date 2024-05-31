@@ -1531,7 +1531,16 @@ ______________________________________________________
 <br><br>
 
 # Branch
-	
+
+<br><br>
+
+## get current Branch
+```
+git rev-parse --abbrev-ref HEAD
+# git pull origin $(git rev-parse --abbrev-ref HEAD)
+```
+
+<br><br>
 
 
 ## Fixing the “GH001: Large files detected. You may want to try Git Large File Storage.”
