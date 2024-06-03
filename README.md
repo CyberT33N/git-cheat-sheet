@@ -3009,6 +3009,19 @@ ______________________________________________________
 
 # Helper Scripts
 
+
+## Check if branch exists remote
+```shell
+REMOTE_NAME="origin"
+
+if git ls-remote --heads $REMOTE_NAME $branch | grep -q $branch; then
+  echo "Branch $branch exists. Proceeding with git pull."
+  git pull $REMOTE_NAME $branch
+else
+  echo "Branch $branch does not exist on remote. So we do not pull.."
+fi
+```
+
 ## Check if head commit from branch a exists in branch b
 ```shell
 
