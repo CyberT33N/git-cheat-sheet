@@ -2999,6 +2999,77 @@ git rm -rf 'lib/main/test/test-db-dumps/test_333'
 
 
 
+<br><br>
+<br><br>
+______________________________________________________
+______________________________________________________
+<br><br>
+<br><br>
+
+
+# Helper Scripts
+
+## Check if head commit from branch a exists in branch b
+```shell
+
+if [ "$ENABLE_CUSTOM_PROJECT_PATH" = "true" ]; then
+(
+    cd $CUSTOM_PROJECT_PATH
+
+    # Pull the latest changes for both branches
+    echo "Pulling latest changes for $BRANCH1"
+    git pull origin $BRANCH1
+    if [ $? -ne 0 ]; then
+        echo "Failed to pull $BRANCH1"
+        exit 1
+    fi
+
+    echo "Pulling latest changes for $BRANCH2"
+    git pull origin $BRANCH2
+    if [ $? -ne 0 ]; then
+        echo "Failed to pull $BRANCH2"
+        exit 1
+    fi
+
+    # Get the HEAD commit hash of the first branch
+    HEAD_COMMIT_BRANCH1=$(git rev-parse origin/$BRANCH1)
+
+    # Check if the HEAD commit of the first branch is present in the second branch
+    if git branch -r --contains $HEAD_COMMIT_BRANCH1 | grep -q "origin/$BRANCH2"; then
+        echo "The HEAD commit of $BRANCH1 exists in $BRANCH2."
+    else
+        echo "Error: The HEAD commit of $BRANCH1 does not exist in $BRANCH2. This means that $BRANCH2 is not up-to-date with $BRANCH1. (Check open MR or create MR: $BRANCH1 -> $BRANCH2)"
+        exit 1
+    fi
+)
+fi
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3361,6 +3432,61 @@ git pull --rebase
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 ______________________________________________________
 ______________________________________________________
@@ -3474,8 +3600,12 @@ h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt div ins del sup sub p
 
 
 
+
+<br><br>
 <br><br>
 ______________________________________________________
+______________________________________________________
+<br><br>
 <br><br>
 
 ## Tables
@@ -3518,9 +3648,20 @@ ______________________________________________________
 
 
 
+
+
+
+
+
+
+
+<br><br>
 <br><br>
 ______________________________________________________
+______________________________________________________
 <br><br>
+<br><br>
+
 ## Images
 
 <br>
@@ -3591,7 +3732,10 @@ ______________________________________________________
 
 
 <br><br>
+<br><br>
 ______________________________________________________
+______________________________________________________
+<br><br>
 <br><br>
 
 ## Listing
