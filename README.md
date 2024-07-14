@@ -1847,14 +1847,16 @@ cd ~/Projects/dev-environment
 git remote add github git@github.com:CyberT33N/dev-environment.git
 git remote add bb git@bitbucket.org:CyberT33N/dev-environment.git
 git remote add gitlab git@gitlab.com:CyberT33N/dev-environment.git
-git remote add gitlabInternal git@gitlab.local.com:CyberT33N/dev-environment.git
+# dev-environment docker
+# git remote add gitlabInternal git@gitlab.local.com:CyberT33N/dev-environment.git
+# minikube
+git remote add gitlabInternal ssh://git@gitlab.local.com:32022/CyberT33N/dev-environment.git
 
 # Method #2 - Maybe not needed when you sue method #1
 # git remote set-url --add --push origin git@github.com:CyberT33N/dev-environment.git
 # git remote set-url --add --push origin git@bitbucket.org:CyberT33N/dev-environment.git
 # git remote set-url --add --push origin git@gitlab.com:CyberT33N/dev-environment.git
 # git remote set-url --add --push gitlabInternal git@gitlab.local.com:CyberT33N/dev-environment.git
-
 ```
 	
 	
