@@ -135,6 +135,17 @@ git checkout my-test-branch
 
 <br><br>
 
+#### Revert changes from git pull with merge conflicts
+- Imagine you did a git pull and had 2 merge conflicts. You solved one of them but it was not correct and you want to revert your changes then you do:
+```shell
+git merge --abort
+```
+
+<br><br>
+<br><br>
+
+<br><br>
+
 #### Squash merge branch into current branch without merge conflicts
 ```bash
 git checkout sourceBranch
