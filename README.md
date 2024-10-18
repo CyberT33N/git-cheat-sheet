@@ -255,11 +255,11 @@ git rebase develop
 # If there are merge conflicts and you solve them, use:
 
 # If there are merge conflicts with package-lock.json:
-rm -f package-lock.json
-npm i
+# rm -f package-lock.json
+# npm i
 
-git add .
-git rebase --continue
+# git add .
+# git rebase --continue
 
 # Necessary if untracked files remain when switching branches.
 git clean -f -d -x -i -e node_modules
