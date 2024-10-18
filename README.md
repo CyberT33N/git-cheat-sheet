@@ -159,10 +159,11 @@ npm ci
 ```shell
 git checkout your-feature-branch
 git merge --squash your-feature-dev-branch
+# If there are breaking changes then to breaking change commit instead of normal commit!
 git commit -m "fix(ABC-232): Edit custom block"
 ```
 
-If there are breaking changes set commit message footer:
+**If there are breaking changes set commit message footer**:
 ```shell
 git commit -m 'fix(ABC-232): Edit custom block' -m 'BREAKING CHANGE: Route xyz has been
 renamed to abc'
