@@ -77,6 +77,7 @@ sudo apt-get install git
 
 
 
+
 <br><br>
 <br><br>
 ______________________________________________________
@@ -91,6 +92,10 @@ ______________________________________________________
 ```shell
 git config core.editor "nano"
 ```
+
+
+
+
 
 
 
@@ -288,7 +293,13 @@ git push --force --set-upstream origin fix/TICKET-232/edit-custom-block/main
 
 
 
-<details>
+</details>
+
+
+
+
+
+
 
 
 
@@ -607,11 +618,11 @@ Sometimes you'll read about package or release managers (the people, not the too
 
 
 
-
+<br><br>
 <br><br>
 ______________________________________________________
 <br><br>
-
+<br><br>
 
 
 # change timeout for session password
