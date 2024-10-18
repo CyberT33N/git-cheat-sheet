@@ -110,12 +110,16 @@ git config core.editor "nano"
 
 
 <br><br>
+<br><br>
 ______________________________________________________
+<br><br>
 <br><br>
 
 ## Workflows
 - The next section does contain example of what commands to use in different all day scenarios
 
+<details><summary>Click to expand..</summary>
+	
 <br><br>
 
 ### Create new branch and use current code status without git add/stash
@@ -284,14 +288,33 @@ git push --force --set-upstream origin fix/TICKET-232/edit-custom-block/main
 
 
 
+<details>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
 <br><br>
 ______________________________________________________
 <br><br>
-
+<br><br>
 
 # Git
 
