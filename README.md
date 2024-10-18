@@ -124,10 +124,186 @@ ______________________________________________________
 - The next section does contain example of what commands to use in different all day scenarios
 
 <details><summary>Click to expand..</summary>
-	
-<br><br>
 
-### Create new branch and use current code status without git add/stash
+
+
+# Ticket > MR
+
+1. Set Ticket to `In progress` in Jira
+  - Move into current sprint
+
+--  --  --  --  --  --  --  
+
+2. Create new feature and feature-dev branch base from develop branch
+```shell
+git checkout develop
+git pull
+mkbranch
+```
+
+3. If you have a local environment like minikube then update to the latest state that your deployments or services which you are using are at the latest state
+
+4. If needed update dependencies
+```shel
+npm ci
+```
+
+5. Solve your ticket and push commit on feature-dev branch
+- Make sure als tests are working
+- Did you remove all.only?
+- Did you create everything related to the ticket? E.g. migrations scripts?
+
+--  --  --  --  --  --  --  
+
+6. Squash merge feature-dev branch -> feature branch
+```shell
+git checkout your-feature-branch
+git merge --squash your-feature-dev-branch
+git commit -m "fix(ABC-232): Edit custom block"
+```
+
+If there are breaking changes set commit message footer:
+```shell
+git commit -m 'fix(ABC-232): Edit custom block' -m 'BREAKING CHANGE: Route xyz has been
+renamed to abc'
+
+# If you accedently already committed without breaking change then you can do:
+# git add . && git commit --amend -m 'refactor(ABC-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE:
+Update MongoDB from 5 to 7'
+```
+
+Make sure that only 1 Commit exists on your feature branch. If you forget to add changes then use:
+```shell
+git add . && git commit --amend --reuse-message HEAD && git push -f
+```
+
+If you accedently have multiple comments on your feature branch you can reset the commits:
+```shell
+# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the merge request (MR).
+
+# Switch to the target branch
+git checkout your_branch
+
+# Soft reset the last e.g. 4 commits locally
+# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
+git reset --soft HEAD~4
+
+# Ensure the affected commits no longer appear in the history:
+git log
+
+# Ensure the files from the previous commits are still present
+git status
+
+git add . && git commit --amend --reuse-message HEAD && git push -f
+```
+
+There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
+- Branching Strategy | Feature branches
+- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
+```shell
+There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
+- Branching Strategy | Feature branches
+- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
+
+# If you've already committed, you can amend it afterward:
+git add . && git commit --amend -m 'refactor(CCS-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE: Update MongoDB from 5 to 7'
+
+Important
+
+git add . && git commit --amend --reuse-message HEAD && git push -f
+
+# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the MR.
+
+# Switch to the target branch
+git checkout your_branch
+
+# Soft reset the last e.g. 4 commits locally
+# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
+git reset --soft HEAD~4
+
+# Ensure the affected commits no longer appear in the history:
+git log
+
+# Ensure the files from the previous commits are still present
+git status
+
+# Stage the previously committed files. You’ll need to decide which files to stage for your 1st commit and which for the 2nd:
+git add README.md
+
+# Ensure the desired files are staged:
+git status
+
+# Force push to overwrite the commit history on GitLab with the local changes
+git push -f
+
+# If you have a 2nd commit, repeat the same process.
+```
+
+--  --  --  --  --  --  --  
+
+7. Rebase develop -> feature branch
+```shell
+cd ais-ccm-repo
+
+git checkout develop
+git pull
+git checkout fix/ABC-232/edit-custom-block/main
+git rebase develop
+
+# ----- Resolving potential merge conflicts ----
+# If there are merge conflicts and you solve them, use:
+
+# If there are merge conflicts with package-lock.json:
+rm -f package-lock.json
+npm i
+
+git add .
+git rebase --continue
+
+# Necessary if untracked files remain when switching branches.
+git clean -f -d -x -i -e node_modules
+
+# Make sure again that the unit tests and integration tests pass locally.
+```
+
+Run this command every time! If there are changes to NPM packages, such as an update to a higher version, we can install the current version with this command:
+```shell
+npm ci
+```
+
+8. Push feature branch
+```shell
+git push --set-upstream origin fix/ABC-232/edit-custom-block/main
+
+# git push --force --set-upstream origin fix/ABC-232/edit-custom-block/main
+# --force is only needed if the branch was already pushed before the rebase.
+# During a rebase, the commit history is always overwritten,
+# so the next push will always require the --force flag.
+```
+
+9. Wait until gitlab pipeline is finished
+
+10. Deploy to test cluster and if everything is working set ticket to `FINISHED`. 
+
+11. Create MR in gitlab feature branch -> develop branch
+
+12. If needed update Postman collection
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<br><br><br><br>
+
+# Create new branch and use current code status without git add/stash
 - You can just create a new switch and then checkout on it. The current code from your old branch will be copied in the new you had created and where you checkout.
 ```bash
 git branch my-test-branch
@@ -140,11 +316,11 @@ git checkout my-test-branch
 <br><br>
 <br><br>
 
-### Merge
+# Merge
 
 <br><br>
 
-#### Revert changes from git pull with merge conflicts
+## Revert changes from git pull with merge conflicts
 - Imagine you did a git pull and had 2 merge conflicts. You solved one of them but it was not correct and you want to revert your changes then you do:
 ```shell
 git merge --abort
@@ -155,7 +331,7 @@ git merge --abort
 
 <br><br>
 
-#### Squash merge branch into current branch without merge conflicts
+## Squash merge branch into current branch without merge conflicts
 ```bash
 git checkout sourceBranch
 git merge --squash targetBranch
@@ -165,7 +341,7 @@ git push
 
 <br><br>
 
-#### Squash merge branch into current branch with merge conflicts
+## Squash merge branch into current branch with merge conflicts
 ```bash
 git checkout sourceBranch
 git merge --squash targetBranch
@@ -178,7 +354,7 @@ git push
 
 <br><br>
 
-#### Revert merge if no commit was made by deleting the branch locally
+## Revert merge if no commit was made by deleting the branch locally
 ```bash
 git checkout otherBranch
 git branch -D targetBranch # will delete the branch local
@@ -199,11 +375,11 @@ git checkout targetBranch
 <br><br>
 <br><br>
 
-### Rebase
+# Rebase
 
 <br><br>
 
-#### Squash merge branch into current branch without merge conflicts
+## Squash merge branch into current branch without merge conflicts
 ```bash
 git fetch -u origin develop:develop
 git rebase develop
@@ -227,11 +403,11 @@ git push -f
 
 
 
-### Pull
+# Pull
 
 <br><br>
 
-#### Current branch is local outdated and there are changes remote
+## Current branch is local outdated and there are changes remote
 ```bash
 # hint: You have divergent branches and need to specify how to reconcile them.
 # hint: You can do so by running one of the following commands sometime before
@@ -262,9 +438,9 @@ git pull
 <br><br>
 
 
-### Branches
+# Branches
 
-#### develop, feature and feature-dev branch
+## develop, feature and feature-dev branch
 ```
 # Pull from latest main branch in this case develop and then create feature branch
 git checkout develop
