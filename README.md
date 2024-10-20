@@ -161,6 +161,7 @@ git checkout your-feature-branch
 git merge --squash your-feature-dev-branch
 # If there are breaking changes then to breaking change commit instead of normal commit!
 git commit -m "fix(ABC-232): Edit custom block"
+git push
 ```
 
 **If there are breaking changes set commit message footer**:
@@ -172,73 +173,73 @@ renamed to abc'
 # git add . && git commit --amend -m 'refactor(ABC-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE:
 Update MongoDB from 5 to 7'
 ```
-
-Make sure that only 1 Commit exists on your feature branch. If you forget to add changes then use:
-```shell
-git add . && git commit --amend --reuse-message HEAD && git push -f
-```
-
-If you accedently have multiple comments on your feature branch you can reset the commits:
-```shell
-# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the merge request (MR).
-
-# Switch to the target branch
-git checkout your_branch
-
-# Soft reset the last e.g. 4 commits locally
-# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
-git reset --soft HEAD~4
-
-# Ensure the affected commits no longer appear in the history:
-git log
-
-# Ensure the files from the previous commits are still present
-git status
-
-git add . && git commit --amend --reuse-message HEAD && git push -f
-```
-
-There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
-- Branching Strategy | Feature branches
-- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
-```shell
-There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
-- Branching Strategy | Feature branches
-- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
-
-# If you've already committed, you can amend it afterward:
-git add . && git commit --amend -m 'refactor(CCS-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE: Update MongoDB from 5 to 7'
-
-Important
-
-git add . && git commit --amend --reuse-message HEAD && git push -f
-
-# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the MR.
-
-# Switch to the target branch
-git checkout your_branch
-
-# Soft reset the last e.g. 4 commits locally
-# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
-git reset --soft HEAD~4
-
-# Ensure the affected commits no longer appear in the history:
-git log
-
-# Ensure the files from the previous commits are still present
-git status
-
-# Stage the previously committed files. You’ll need to decide which files to stage for your 1st commit and which for the 2nd:
-git add README.md
-
-# Ensure the desired files are staged:
-git status
-
-# Force push to overwrite the commit history on GitLab with the local changes
-git push -f
-
-# If you have a 2nd commit, repeat the same process.
-```
+	
+	Make sure that only 1 Commit exists on your feature branch. If you forget to add changes then use:
+	```shell
+	git add . && git commit --amend --reuse-message HEAD && git push -f
+	```
+		
+		If you accedently have multiple comments on your feature branch you can reset the commits:
+		```shell
+		# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the merge request (MR).
+		
+		# Switch to the target branch
+		git checkout your_branch
+		
+		# Soft reset the last e.g. 4 commits locally
+		# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
+		git reset --soft HEAD~4
+		
+		# Ensure the affected commits no longer appear in the history:
+		git log
+		
+		# Ensure the files from the previous commits are still present
+		git status
+		
+		git add . && git commit --amend --reuse-message HEAD && git push -f
+		```
+		
+		There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
+		- Branching Strategy | Feature branches
+		- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
+		```shell
+		There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
+		- Branching Strategy | Feature branches
+		- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
+		
+		# If you've already committed, you can amend it afterward:
+		git add . && git commit --amend -m 'refactor(CCS-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE: Update MongoDB from 5 to 7'
+		
+		Important
+		
+		git add . && git commit --amend --reuse-message HEAD && git push -f
+		
+		# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the MR.
+		
+		# Switch to the target branch
+		git checkout your_branch
+		
+		# Soft reset the last e.g. 4 commits locally
+		# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
+		git reset --soft HEAD~4
+		
+		# Ensure the affected commits no longer appear in the history:
+		git log
+		
+		# Ensure the files from the previous commits are still present
+		git status
+		
+		# Stage the previously committed files. You’ll need to decide which files to stage for your 1st commit and which for the 2nd:
+		git add README.md
+		
+		# Ensure the desired files are staged:
+		git status
+		
+		# Force push to overwrite the commit history on GitLab with the local changes
+		git push -f
+		
+		# If you have a 2nd commit, repeat the same process.
+		```
 
 --  --  --  --  --  --  --  
 
