@@ -3846,6 +3846,18 @@ example.svg
 
 
 
+<br><br>
+<br><br>
+
+## Change font size
+- You can use # or <h1> like you maybe know but you can also do this. The more sub you use the smaller it gets..
+```
+<sub><sup>combining the two tags</sup></sub>
+```
+
+
+
+
 
 
 <br><br>
