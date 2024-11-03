@@ -3734,9 +3734,16 @@ ______________________________________________________
 
 # Markdown
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+- **Notice that github will sanitize markdown and remove a lot of stuff like the usage of inline style, style elements or script elements**
 
 
 
+## Custom stlyes in markdown
+- https://css-tricks.com/custom-styles-in-github-readmes/
+- https://stackoverflow.com/questions/51956361/custom-css-file-for-readme-md-in-a-github-repo
+
+
+<br><br>
 <br><br>
 
 
