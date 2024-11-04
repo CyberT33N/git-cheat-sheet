@@ -3734,8 +3734,14 @@ ______________________________________________________
 
 # Markdown
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-- **Notice that github will sanitize markdown and remove a lot of stuff like the usage of inline style, style elements or script elements**
 
+<br><br>
+
+## Github markdown API
+- **Notice that github will sanitize markdown and remove a lot of stuff like the usage of inline style, style elements or script elements**
+- **The only available size formats you can use are `px` and `%`**
+
+<br><br>
 <br><br>
 
 ## Custom stlyes in markdown
