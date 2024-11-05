@@ -3737,6 +3737,11 @@ ______________________________________________________
 
 <br><br>
 
+## Tools
+- https://readme-typing-svg.demolab.com/demo/?duration=2000&color=FA46BB&center=true&random=true&lines=Best+regards%2C+Dennis
+
+<br><br>
+
 ## Github markdown API
 - **Notice that github will sanitize markdown and remove a lot of stuff like the usage of inline style, style elements or script elements**
 - **The only available size formats you can use are `px` and `%`**
