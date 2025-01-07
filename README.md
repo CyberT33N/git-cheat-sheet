@@ -2311,6 +2311,15 @@ git push -f
 
 <br><br>
 
+## Remove all commits from branch but keep head commit
+```bash
+git checkout yourBranch
+git reset --hard $(git rev-parse HEAD)
+git push origin yourBranch --force
+```
+
+<br><br>
+
 ## Remove specific amount of head commits but keep local changes
 ```bash
 # git log um zu checken wie viele der letzten Commits vereint werden sollen. Sonst kann man es auch im MR sehen
