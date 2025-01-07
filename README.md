@@ -2309,14 +2309,6 @@ git reset --hard <commit-hash-id-to-put-as-head>
 git push -f
 ```
 
-<br><br>
-
-## Remove all commits from branch but keep head commit
-```bash
-git checkout yourBranch
-git reset --hard $(git rev-parse HEAD)
-git push origin yourBranch --force
-```
 
 <br><br>
 
