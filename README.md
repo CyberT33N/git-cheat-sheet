@@ -2281,6 +2281,11 @@ git clean -f -d -x -i -e node_modules
 
 
 
+
+
+
+
+
 <br><br>
 ______________________________________________________
 <br><br>
@@ -2289,7 +2294,9 @@ ______________________________________________________
 - **--soft** will be used by default when you use git reset. Use --soft if you want to keep your changes
 - Use **--hard** if you don't care about keeping the changes you made
 
-<br><br>
+<details><summary>Click to expand..</summary>
+
+
 
 ## reset last head commit
 ```bash
@@ -2358,9 +2365,20 @@ git reset --hard HEAD
 git clean -d -f 
 ```
 
+<br><br>
+
+## Set master branch into main
+Statt zu mergen, kannst du den `main`-Branch einfach exakt auf den Stand von `master` zurücksetzen:  
+```bash
+git checkout main  # Falls du nicht schon auf main bist
+git reset --hard master  # Setzt main auf den Stand von master
+git push -f origin main  # Falls du ein Remote-Repository hast, erzwingt dies das Update
+```
+💡 **Achtung:** Das überschreibt den `main`-Branch vollständig mit `master`. Falls `main` bereits Änderungen hatte, sind diese weg.  
 
 
 
+</details>
 
 
 
