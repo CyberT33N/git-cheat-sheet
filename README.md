@@ -4163,11 +4163,196 @@ ______________________________________________________
 
 
 
+
+
+
+
+
+
+
+
+
 <br><br>
-______________________________________________________
+________
+________
 <br><br>
 
-## FAQ
+# Utils
+
+<details><summary>Click to expand..</summary>
+
+# Get raw contens of repo in single file
+
+<details><summary>Click to expand..</summary>
+
+Usage:
+```shell
+bash test.sh https://github.com/alex8088/electron-vite-boilerplate/tree/master
+```
+
+Script: 
+```shell
+#!/bin/bash
+
+# Logging-Funktion für wichtige Informationen
+log() {
+    echo "[INFO] $1"
+}
+
+# Error Logging-Funktion
+error_log() {
+    echo "[ERROR] $1" >&2
+}
+
+# Cleanup Funktion
+cleanup() {
+    rm -f repo_structure.json debug.log
+}
+
+# Registriere cleanup für normales Ende und Abbruch
+trap cleanup EXIT
+
+# Überprüfe ob ein Repository-URL als Argument übergeben wurde
+if [ $# -eq 0 ]; then
+    error_log "Keine URL angegeben"
+    echo "Bitte geben Sie eine GitHub Repository URL an"
+    echo "Beispiel: $0 https://github.com/username/repository/tree/main"
+    exit 1
+fi
+
+# Extrahiere Username, Repository Name und Branch aus der URL
+REPO_URL=$1
+USERNAME=$(echo $REPO_URL | sed -E 's/.*github.com\/([^\/]+)\/.*/\1/')
+REPO=$(echo $REPO_URL | sed -E 's/.*github.com\/[^\/]+\/([^\/]+).*/\1/')
+BRANCH="master" # Default Branch
+
+# Extrahiere Branch aus der URL wenn vorhanden
+if echo $REPO_URL | grep -q "/tree/"; then
+    BRANCH=$(echo $REPO_URL | sed -E 's/.*\/tree\/([^\/]+).*/\1/')
+    REPO=${REPO%/tree/*}
+fi
+
+log "Verarbeite Repository: $USERNAME/$REPO (Branch: $BRANCH)"
+
+# GitHub API URL mit dynamischem Branch
+API_URL="https://api.github.com/repos/$USERNAME/$REPO/git/trees/$BRANCH?recursive=1"
+
+# Temporäre Datei für die Output-Datei
+OUTPUT_FILE="output.txt"
+> $OUTPUT_FILE
+
+# Liste von Dateien, die explizit ausgeschlossen werden sollen
+EXCLUDED_FILES=(
+    "package-lock.json"
+    "yarn.lock"
+    "pnpm-lock.yaml"
+    ".gitignore"
+    ".env"
+    ".env.example"
+    ".browserslistrc"
+)
+
+# Hole die Repository-Struktur
+log "Lade Repository-Struktur..."
+REPO_STRUCTURE=$(curl -s -H "Accept: application/vnd.github.v3+json" $API_URL)
+
+# Überprüfe ob die API-Anfrage erfolgreich war
+if echo "$REPO_STRUCTURE" | grep -q "message.*API rate limit exceeded"; then
+    error_log "GitHub API Rate-Limit überschritten"
+    exit 1
+fi
+
+if echo "$REPO_STRUCTURE" | grep -q "message.*Not Found"; then
+    error_log "Repository oder Branch nicht gefunden"
+    exit 1
+fi
+
+# Funktion zum Überprüfen, ob eine Datei ausgeschlossen werden soll
+should_exclude() {
+    local filename="$1"
+    for excluded in "${EXCLUDED_FILES[@]}"; do
+        if [ "$filename" = "$excluded" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Zähler für verarbeitete Dateien
+processed_files=0
+skipped_files=0
+
+# Extrahiere und verarbeite alle Datei-URLs
+echo "$REPO_STRUCTURE" | jq -r '.tree[] | select(.type == "blob") | .path' | while read -r file; do
+    # Überprüfe ob die Datei ausgeschlossen werden soll
+    if should_exclude "$(basename "$file")"; then
+        ((skipped_files++))
+        continue
+    fi
+
+    # Überprüfe die Dateierweiterung
+    extension="${file##*.}"
+    
+    # Liste von erlaubten Dateierweiterungen
+    case $extension in
+        js|ts|py|java|cpp|c|h|hpp|css|html|xml|json|md|txt|yml|yaml|sh|bash|php|rb|go|rust|rs|swift|kt|scala|r|pl|pm|sql)
+            # Hole den Inhalt der Datei über die GitHub API mit dynamischem Branch
+            CONTENT_URL="https://raw.githubusercontent.com/$USERNAME/$REPO/$BRANCH/$file"
+            CONTENT=$(curl -s "$CONTENT_URL")
+            
+            if [ -n "$CONTENT" ]; then
+                echo -e "\n=== $file ===\n" >> $OUTPUT_FILE
+                echo "$CONTENT" >> $OUTPUT_FILE
+                echo -e "\n=== END OF FILE ===\n" >> $OUTPUT_FILE
+                ((processed_files++))
+            fi
+            ;;
+    esac
+done
+
+# Abschlussbericht
+if [ -s "$OUTPUT_FILE" ]; then
+    log "Verarbeitung abgeschlossen:"
+    log "- $processed_files Dateien erfolgreich verarbeitet"
+    log "- $skipped_files Dateien übersprungen"
+    log "- Branch: $BRANCH"
+    log "- Ausgabe in output.txt gespeichert ($(wc -c < "$OUTPUT_FILE") Bytes)"
+else
+    error_log "Keine Dateien wurden verarbeitet!"
+fi
+```
+
+</details>
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+________
+________
+<br><br>
+
+# FAQ
+
+<details><summary>Click to expand..</summary>
 
 ### Git freezing on new line when try to git push
 ```shell
@@ -4180,4 +4365,6 @@ sudo apt-get install git
 ssh-agent zsh # If you do not use ZSH then make ssh-agent bash
 ssh-add
 ```
+
+</details>
 
