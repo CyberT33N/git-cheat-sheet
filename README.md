@@ -913,6 +913,7 @@ ______________________________________________________
 # ssh-keygen -t ecdsa -b 521
 ssh-keygen -t ecdsa -b 521 -f /home/tuserNameHere/.ssh/github/id_ecdsa
 ```
+- ssh-keygen works aswell on windows. 
 
 <br><br>
 
