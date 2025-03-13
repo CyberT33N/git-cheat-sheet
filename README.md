@@ -127,169 +127,225 @@ ______________________________________________________
 
 
 
-# Ticket > MR
 
-1. Set Ticket to `In progress` in Jira
-  - Move into current sprint
+# Ticket > Merge Request (MR) Prozess
 
---  --  --  --  --  --  --  
+## 1. Ticket in Jira setzen 📝
+- Setze das Ticket auf **`In Progress`** in Jira.
+- Verschiebe das Ticket in den aktuellen Sprint.
 
-2. Create new feature and feature-dev branch base from develop branch
+---
+
+## 2. Feature- und Feature-Dev-Branch erstellen 🛠️
+Erstelle einen neuen Feature-Branch und einen zugehörigen Feature-Dev-Branch basierend auf dem `develop`-Branch.
+
 ```shell
+# Der Befehl mkbranch fragt auch automatisch, ob der aktuelle develop-Branch geladen werden soll
 git checkout develop
 git pull
+
+# Feature Branch erstellen
+# git branch feat/PRIV-001/add-new-button/main
+# git checkout feat/PRIV-001/add-new-button/main
+mkbranch
+
+# Feature-dev Branch erstellen
+# git branch feat/PRIV-001/add-new-button/dde
+# git checkout feat/PRIV-001/add-new-button/dde
 mkbranch
 ```
 
-3. If you have a local environment like minikube then update to the latest state that your deployments or services which you are using are at the latest state
+---
 
-4. If needed update dependencies
-```shel
+## 3. Lokale Umgebung aktualisieren 🌐
+Wenn du eine lokale Umgebung wie **Minikube** verwendest, stelle sicher, dass deine Deployments oder Dienste auf dem neuesten Stand sind.
+
+---
+
+## 4. Abhängigkeiten aktualisieren 📦
+Falls nötig, aktualisiere die Abhängigkeiten:
+
+```shell
 npm ci
 ```
 
-5. Solve your ticket and push commit on feature-dev branch
-- Make sure als tests are working
-- Did you remove all.only?
-- Did you create everything related to the ticket? E.g. migrations scripts?
+---
 
---  --  --  --  --  --  --  
+## 5. Ticket lösen und Commit auf Feature-Dev-Branch pushen 🚀
+- Stelle sicher, dass alle Tests erfolgreich sind. ✔️
+- Hast du alle `.only`-Tests entfernt? 🧹
+- Wurden alle ticketbezogenen Änderungen durchgeführt? (z. B. Migrationsskripte) 🔄
 
-6. Squash merge feature-dev branch -> feature branch
+---
+
+## 6. Feature-Dev-Branch auf Feature-Branch squashen 🔨
+Führe einen **Squash-Merge** des Feature-Dev-Branches in den Feature-Branch durch.
+
 ```shell
-git checkout your-feature-branch
-git merge --squash your-feature-dev-branch
-# If there are breaking changes then to breaking change commit instead of normal commit!
-git commit -m "fix(ABC-232): Edit custom block"
-git push
+git checkout feat/PRIV-001/add-new-button/main
+git merge --squash feat/PRIV-001/add-new-button/dde
+
+# Wenn Breaking Changes vorhanden sind, nutze eine spezielle Commit-Nachricht!
+# git commit -m "fix(ABC-232): Edit custom block"
+# git push
+
+mkcommit
 ```
 
-**If there are breaking changes set commit message footer**:
-```shell
-git commit -m 'fix(ABC-232): Edit custom block' -m 'BREAKING CHANGE: Route xyz has been
-renamed to abc'
+**Falls Breaking Changes vorliegen, füge einen Footer zur Commit-Nachricht hinzu:**
 
-# If you accedently already committed without breaking change then you can do:
-# git add . && git commit --amend -m 'refactor(ABC-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE:
-Update MongoDB from 5 to 7'
+```shell
+git commit -m 'fix(ABC-232): Edit custom block' -m 'BREAKING CHANGE: Route xyz wurde zu abc umbenannt'
+
+# Falls du versehentlich bereits ohne Breaking Change committed hast, kannst du dies nachträglich ändern:
+# git add . && git commit --amend -m 'refactor(ABC-2139): MongoDB von Version 5 auf 7 aktualisiert' -m 'BREAKING CHANGE: MongoDB von Version 5 auf 7 aktualisiert'
 ```
-	
-	Make sure that only 1 Commit exists on your feature branch. If you forget to add changes then use:
-	```shell
-	git add . && git commit --amend --reuse-message HEAD && git push -f
-	```
-		
-		If you accedently have multiple comments on your feature branch you can reset the commits:
-		```shell
-		# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the merge request (MR).
-		
-		# Switch to the target branch
-		git checkout your_branch
-		
-		# Soft reset the last e.g. 4 commits locally
-		# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
-		git reset --soft HEAD~4
-		
-		# Ensure the affected commits no longer appear in the history:
-		git log
-		
-		# Ensure the files from the previous commits are still present
-		git status
-		
-		git add . && git commit --amend --reuse-message HEAD && git push -f
-		```
-		
-		There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
-		- Branching Strategy | Feature branches
-		- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
-		```shell
-		There are exceptions. For example, if you're working on a ticket with sub-tasks, you can create multiple commits related to different ticket IDs:
-		- Branching Strategy | Feature branches
-		- Warning: If your MR is rejected due to an issue in the first commit, you'll need to stage the files again and recreate the commits.
-		
-		# If you've already committed, you can amend it afterward:
-		git add . && git commit --amend -m 'refactor(CCS-2139): Update MongoDB from 5 to 7' -m 'BREAKING CHANGE: Update MongoDB from 5 to 7'
-		
-		Important
-		
-		git add . && git commit --amend --reuse-message HEAD && git push -f
-		
-		# Use git log to check how many of the recent commits need to be squashed. Alternatively, you can also see this in the MR.
-		
-		# Switch to the target branch
-		git checkout your_branch
-		
-		# Soft reset the last e.g. 4 commits locally
-		# Alternatively, you can do it one-by-one with git reset --soft HEAD^, which is a safer option.
-		git reset --soft HEAD~4
-		
-		# Ensure the affected commits no longer appear in the history:
-		git log
-		
-		# Ensure the files from the previous commits are still present
-		git status
-		
-		# Stage the previously committed files. You’ll need to decide which files to stage for your 1st commit and which for the 2nd:
-		git add README.md
-		
-		# Ensure the desired files are staged:
-		git status
-		
-		# Force push to overwrite the commit history on GitLab with the local changes
-		git push -f
-		
-		# If you have a 2nd commit, repeat the same process.
-		```
 
---  --  --  --  --  --  --  
+Stelle sicher, dass nur ein Commit im Feature-Branch vorhanden ist. Falls du Änderungen vergessen hast, kannst du dies nachträglich tun:
 
-7. Rebase develop -> feature branch
+<details><summary>Click to expand..</summary>
+
 ```shell
-cd ais-ccm-repo
+git add . && git commit --amend --reuse-message HEAD && git push -f
+```
 
+</details>
+
+
+Falls du mehrere Commits im Feature-Branch hast, kannst du sie zurücksetzen:
+
+<details><summary>Click to expand..</summary>
+
+```shell
+# Überprüfe mit git log, wie viele der letzten Commits zusammengeführt werden müssen. Alternativ kannst du dies auch im Merge Request (MR) sehen.
+
+# Wechsel zum Ziel-Branch
+git checkout your_branch
+
+# Setze die letzten e.g. 4 Commits lokal zurück
+# Alternativ kannst du dies auch einzeln mit git reset --soft HEAD^ tun, was sicherer ist.
+git reset --soft HEAD~4
+
+# Stelle sicher, dass die betroffenen Commits nicht mehr im Verlauf erscheinen:
+git log
+
+# Überprüfe, ob die Dateien der vorherigen Commits immer noch vorhanden sind
+git status
+
+git add . && git commit --amend --reuse-message HEAD && git push -f
+```
+
+Es gibt Ausnahmen. Zum Beispiel, wenn du an einem Ticket mit Sub-Tasks arbeitest, kannst du mehrere Commits für verschiedene Ticket-IDs erstellen:
+
+- **Branching-Strategie:** Feature-Branches
+- **Wichtig:** Falls dein MR aufgrund eines Problems im ersten Commit abgelehnt wird, musst du die Dateien erneut stagen und die Commits neu erstellen.
+
+```shell
+# Wenn du bereits committed hast, kannst du es später anpassen:
+git add . && git commit --amend -m 'refactor(CCS-2139): MongoDB von Version 5 auf 7 aktualisiert' -m 'BREAKING CHANGE: MongoDB von Version 5 auf 7 aktualisiert'
+
+# Stelle sicher, dass du folgende Schritte machst:
+git add . && git commit --amend --reuse-message HEAD && git push -f
+
+# Nutze git log, um zu überprüfen, wie viele der letzten Commits zusammengeführt werden müssen.
+
+# Wechsel zum Ziel-Branch
+git checkout your_branch
+
+# Setze z.B. die letzten 4 Commits lokal zurück
+git reset --soft HEAD~4
+
+# Überprüfe, ob die betroffenen Commits nicht mehr im Verlauf erscheinen:
+git log
+
+# Stelle sicher, dass die Dateien der vorherigen Commits noch vorhanden sind
+git status
+
+# Stage die Dateien für den 1. Commit:
+git add README.md
+
+# Überprüfe, ob die gewünschten Dateien gestaged sind:
+git status
+
+# Force-Push, um die Commit-Historie auf GitLab mit den lokalen Änderungen zu überschreiben
+git push -f
+
+# Wiederhole den Prozess, wenn du einen zweiten Commit hast.
+```
+
+</details>
+
+---
+
+## 7. `develop`-Branch auf den Feature-Branch rebasen 🔄
+Führe einen **Rebase** des `develop`-Branches auf den Feature-Branch durch.
+
+```shell
 git checkout develop
 git pull
-git checkout fix/ABC-232/edit-custom-block/main
+
+git checkout feat/PRIV-001/add-new-button/main
 git rebase develop
 
-# ----- Resolving potential merge conflicts ----
-# If there are merge conflicts and you solve them, use:
+# ----- Konflikte lösen ----
+# Wenn es Merge-Konflikte gibt und du diese löst, benutze:
 
-# If there are merge conflicts with package-lock.json:
+# Bei Konflikten mit der package-lock.json:
 # rm -f package-lock.json
 # npm i
 
 # git add .
 # git rebase --continue
 
-# Necessary if untracked files remain when switching branches.
+# --------------------------
+
+# Wenn nach dem Wechseln der Branches untracked Files übrig bleiben:
 git clean -f -d -x -i -e node_modules
 
-# Make sure again that the unit tests and integration tests pass locally.
+# Stelle sicher, dass die Unit-Tests und Integrationstests lokal wieder erfolgreich sind.
 ```
 
-Run this command every time! If there are changes to NPM packages, such as an update to a higher version, we can install the current version with this command:
+Führe diesen Befehl immer aus! Falls es Änderungen an NPM-Paketen gibt, die auf eine höhere Version aktualisiert wurden, kannst du die aktuelle Version mit folgendem Befehl installieren:
+
 ```shell
 npm ci
 ```
 
-8. Push feature branch
+---
+
+## 8. Feature-Branch pushen ⬆️
+Push deinen Feature-Branch:
+
 ```shell
 git push --set-upstream origin fix/ABC-232/edit-custom-block/main
 
 # git push --force --set-upstream origin fix/ABC-232/edit-custom-block/main
-# --force is only needed if the branch was already pushed before the rebase.
-# During a rebase, the commit history is always overwritten,
-# so the next push will always require the --force flag.
+# --force ist nur nötig, wenn der Branch vor dem Rebase bereits gepusht wurde.
+# Beim Rebase wird die Commit-Historie immer überschrieben,
+# daher erfordert der nächste Push immer das --force-Flag.
 ```
 
-9. Wait until gitlab pipeline is finished
+---
 
-10. Deploy to test cluster and if everything is working set ticket to `FINISHED`. 
+## 9. Warten bis die GitLab-Pipeline abgeschlossen ist ⏳
+Warte, bis die GitLab-Pipeline abgeschlossen ist.
 
-11. Create MR in gitlab feature branch -> develop branch
+---
 
-12. If needed update Postman collection
+## 10. Deployment und Ticketstatus 🚀
+- Deploye auf den Test-Cluster und stelle sicher, dass alles funktioniert.
+- Setze das Ticket auf **`FINISHED`**, wenn alles erfolgreich ist.
+
+---
+
+## 11. Merge Request (MR) erstellen ➡️
+Erstelle den Merge Request im GitLab:  
+**Feature-Branch** → **Develop-Branch**
+
+---
+
+## 12. Postman-Collection aktualisieren 📬
+Falls nötig, aktualisiere die Postman-Collection.
 
 
 
