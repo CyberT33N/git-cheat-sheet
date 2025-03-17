@@ -3019,6 +3019,8 @@ ______________________________________________________
 
 # .gitkeep
 
+
+
 <br><br>
 
 ## Keep empty folder but still ignore all files inside
@@ -3030,11 +3032,33 @@ test-db-dumps/test_333/*
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 
 # .gitignore
 - Ignore files and folders for push
+
+
+<details><summary>Click to expand..</summary>
+
 ```bash
 node_modules
 test/*
@@ -3054,6 +3078,21 @@ touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached nod
 ```bash
 git rm -rf 'lib/main/test/test-db-dumps/test_333'
 ```
+
+
+## Remove cached files
+- Sometimes you already comitted files which you later want to add to .gitignore! In order to delete them run:
+```bash
+git rm --cached out/preload/index.js
+```
+
+
+
+</details>
+
+
+
+
 
 
 
