@@ -778,6 +778,18 @@ host github.com
  
 ## How to store passphrase
 - Add your private key. If you have have multiple ssh keys and you e.g. create the new ssh key here /home/tuserNameHere/.ssh/github/id_ecdsa then you have to add it in order to use it on your machine
+
+Method 1 (recommended:
+```bash
+sudo apt install keychain
+
+keychain --eval --agents ssh ~/.ssh/github/id_ecdsa
+
+# Add to ~/.zshrc and ~/.bashrc this
+eval "$(keychain --eval --agents ssh ~/.ssh/github/id_ecdsa)"
+```
+
+Other methods (Maybe not persistents):
 ```bash
 # Method #1
 eval $(ssh-agent -s)
