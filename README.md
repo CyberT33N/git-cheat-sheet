@@ -1306,6 +1306,21 @@ ______________________________________________________
 
 # submodule
 
+
+## Add submodule
+```bash
+git submodule add https://github.com/CyberT33N/cursor-base-rules.git .cursor-base-rules
+```
+
+<br><br>
+
+
+## Update submodule
+```bash
+git submodule update --remote .cursor-base-rules
+```
+
+
 <br><br>
 
 ## Remove submodule
