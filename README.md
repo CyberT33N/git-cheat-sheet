@@ -607,6 +607,111 @@ ______________________________________________________
 
 
 
+<details><summary>Click to expand..</summary>
+
+## Push zu bestimmten Remotes verhindern (z.B. Upstream)
+
+**Szenario:**
+
+Du hast Remotes konfiguriert (z.B. `upstream` für ein Original-Repository oder `roo-code-upstream` für einen Subtree), von denen du nur `fetch`en (Änderungen holen), aber niemals `push`en (Änderungen hochladen) möchtest. Standardmäßig erlaubt Git jedoch potenziell Push-Operationen zu allen Remotes, was zu Fehlern führt, wenn du keine Berechtigung hast oder wenn automatische Skripte (wie ein `pushall`-Alias) versuchen, dorthin zu pushen.
+
+**Lösung: Push-URL deaktivieren**
+
+Der beste Weg, dies zu verhindern, ist, die spezifische Push-URL für diese Remotes auf einen ungültigen Wert zu setzen. Fetch funktioniert weiterhin über die Standard-URL.
+
+**Befehle:**
+
+```bash
+# Push für das 'upstream'-Remote deaktivieren
+git remote set-url --push upstream "no_push"
+
+# Push für das 'roo-code-upstream'-Remote deaktivieren
+git remote set-url --push roo-code-upstream "no_push"
+
+# Ersetze "upstream" und "roo-code-upstream" durch die Namen deiner Remotes.
+# "no_push" ist hier ein Platzhalter für eine ungültige URL.
+```
+
+**Überprüfung:**
+
+Mit `git remote -v` kannst du überprüfen, ob die Push-URLs korrekt gesetzt wurden:
+
+```
+upstream    https://github.com/microsoft/vscode.git (fetch)
+upstream    no_push (push)
+roo-code-upstream    https://github.com/RooVetGit/Roo-Code.git (fetch)
+roo-code-upstream    no_push (push)
+```
+
+**Ergebnis:**
+
+Push-Versuche zu diesen Remotes schlagen nun fehl (z.B. mit `fatal: 'no_push' does not appear to be a git repository`), was das gewünschte Verhalten ist und versehentliche Pushes verhindert. Fetch-Operationen (`git fetch upstream`) funktionieren weiterhin normal.
+
+---
+
+## Robuste `pushall`-Aliase erstellen (Nur zu existierenden, gewünschten Remotes pushen)
+
+**Szenario:**
+
+Du verwendest einen benutzerdefinierten Git-Alias wie `pushall`, um Änderungen an mehrere Remotes gleichzeitig zu pushen (z.B. `origin`, `github`, `gitlab` etc.). Ein einfacher Alias, der alle Remotes durchläuft (`for i in \`git remote\``), verursacht Probleme:
+1.  Er versucht, zu Remotes zu pushen, zu denen nicht gepusht werden soll (z.B. `upstream`, siehe oben), was zu Fehlern führt.
+2.  Er scheitert oder stoppt, wenn eines der *gewünschten* Remotes im aktuellen Projekt zufällig nicht konfiguriert ist.
+
+**Lösung: Alias mit Existenzprüfung für spezifische Remotes**
+
+Definiere die Aliase in deiner `.gitconfig` so, dass sie eine *vordefinierte Liste* von gewünschten Remotes durchlaufen und *vor jedem Push prüfen*, ob das Remote im aktuellen Repository überhaupt existiert.
+
+**Beispiel-Aliase für `.gitconfig`:**
+
+```gitconfig
+[alias]
+    # Pusht den aktuellen Branch zu allen *existierenden* Standard-Remotes
+    pushall = "!f(){ \
+        for remote in origin github bb gitlab gitlabInternal; do \
+            # Prüfe, ob das Remote existiert (URL abrufbar?)
+            if git remote get-url \"$remote\" > /dev/null 2>&1; then \
+                echo \"Pushing to $remote...\"; \
+                # Nur pushen, wenn Remote existiert
+                git push \"$remote\"; \
+            else \
+                # Optional: Hinweis, wenn ein gewünschtes Remote fehlt
+                echo \"Skipping $remote (not configured in this repo).\"; \
+            fi; \
+        done; \
+    }; f"
+
+    # Force-Pusht den aktuellen Branch zu allen *existierenden* Standard-Remotes
+    pushallforce = "!f(){ \
+        for remote in origin github bb gitlab gitlabInternal; do \
+            if git remote get-url \"$remote\" > /dev/null 2>&1; then \
+                echo \"Force pushing to $remote...\"; \
+                git push -f \"$remote\"; \
+            else \
+                echo \"Skipping $remote (not configured in this repo).\"; \
+            fi; \
+        done; \
+    }; f"
+```
+
+**Anpassung:**
+
+*   Ersetze `origin github bb gitlab gitlabInternal` in der `for`-Schleife durch die *exakten Namen* der Remotes, zu denen du standardmäßig pushen möchtest.
+*   Entferne die `else`-Blöcke mit dem `echo "Skipping..."`, wenn du keine Benachrichtigung über übersprungene, weil nicht konfigurierte Remotes wünschst.
+
+**Ergebnis:**
+
+Die `pushall`-Befehle pushen nun zuverlässig nur zu denjenigen deiner Standard-Remotes, die im aktuellen Projekt auch wirklich eingerichtet sind. Es gibt keine Fehler mehr wegen fehlender Remotes oder wegen des Versuchs, zu Fetch-Only-Remotes (`upstream` etc.) zu pushen.
+
+
+
+</details>
+
+
+
+
+<br><br>
+<br><br>
+
 # Git Subtree Management für `extensions/roo-code`
 
 
