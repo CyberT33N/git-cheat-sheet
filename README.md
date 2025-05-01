@@ -592,6 +592,195 @@ ______________________________________________________
 <br><br>
 
 
+
+
+# Forking
+
+## Guides
+-  https://guides.github.com/activities/forking/#:~:text=After%20using%20GitHub%20by%20yourself,contribute%20to%20someone%20else's%20project.&text=Creating%20a%20%E2%80%9Cfork%E2%80%9D%20is%20producing,repository%20and%20your%20personal%20copy.
+
+
+
+
+<details><summary>Click to expand..</summary>
+
+
+### Git-Cheatsheet: Abschnitt 1 - Lokales Repository erstmalig mit Upstream synchronisieren (bei nicht verwandten Historien)
+
+**Szenario:**
+
+Du hast ein lokales Git-Repository, das ursprünglich von einem anderen Repository (z. B. einem Klon oder Fork) stammt, aber dessen Commit-Historie sich inzwischen von der des ursprünglichen "Upstream"-Repositories unterscheidet. Du möchtest dein lokales Repository nun auf den Stand des Upstream-Repositories bringen, dabei aber deine eigenen, spezifischen Änderungen (z. B. hinzugefügte Dateien/Ordner) beibehalten und eine saubere, gemeinsame Historie für die Zukunft schaffen.
+
+**Problem:**
+
+Ein direkter `git merge` oder `git pull` vom Upstream führt wahrscheinlich zu einem `fatal: refusing to merge unrelated histories`-Fehler oder zu massiven Merge-Konflikten, da Git die beiden unterschiedlichen Historien nicht automatisch zusammenführen kann.
+
+**Lösungsweg (Wie wir es gemacht haben):**
+
+Ziel ist es, die Historie des Upstream-Repositories als Basis zu übernehmen und deine spezifischen Änderungen als neue Commits *darauf* anzuwenden.
+
+1.  **Upstream-Remote hinzufügen (falls noch nicht geschehen):**
+    ```bash
+    # Ersetze <upstream-url> mit der URL des Original-Repositories (z.B. https://github.com/microsoft/vscode.git)
+    git remote add upstream <upstream-url>
+    ```
+    *Erklärung:* Definiert einen Namen (`upstream`) für das Original-Repository, damit du leichter darauf zugreifen kannst.*
+
+2.  **Upstream-Änderungen holen:**
+    ```bash
+    git fetch upstream
+    ```
+    *Erklärung:* Lädt alle Branches und Commits vom `upstream`-Repository herunter, ohne sie sofort in deine lokalen Branches zu integrieren.*
+
+3.  **Aktuellen Stand sichern (WICHTIG):**
+    ```bash
+    # Erstelle einen Backup-Branch von deinem aktuellen lokalen main-Branch
+    git branch main_backup
+    ```
+    *Erklärung:* Sichert den aktuellen Zustand deines `main`-Branches inklusive seiner (problematischen) Historie, falls etwas schiefgeht oder du später darauf zurückgreifen musst.*
+
+4.  **Lokalen Branch auf Upstream zurücksetzen:**
+    ```bash
+    # Stelle sicher, dass du auf dem Branch bist, den du anpassen möchtest (z.B. main)
+    git checkout main
+
+    # Setze den main-Branch HART auf den Stand von upstream/main zurück
+    # ACHTUNG: Dies verwirft die lokale Commit-Historie von 'main'!
+    git reset --hard upstream/main
+    ```
+    *Erklärung:* Dieser Schritt ist entscheidend. Er zwingt deinen lokalen `main`-Branch dazu, exakt dem Zustand und der Historie von `upstream/main` zu entsprechen. Die *Commit-Historie* deines lokalen `main` wird überschrieben, aber die *Dateien* aus deinem vorherigen Stand sind noch im Backup (`main_backup`) und teilweise noch im Working Directory (aber als "nicht Teil des Commits").*
+
+5.  **Eigene Änderungen identifizieren:**
+    ```bash
+    # Zeige die Unterschiede zwischen dem Backup und dem zurückgesetzten Branch an
+    # (Nur Dateinamen und Status: A=Added in main_backup, D=Deleted in main_backup, M=Modified)
+    git diff --name-status main_backup main
+    ```
+    *Erklärung:* Vergleicht den Inhalt des Backups (`main_backup`) mit dem aktuellen Stand (`main`, der jetzt `upstream/main` entspricht). Die Dateien, die in `main_backup` hinzugefügt (`A`) oder geändert (`M`) wurden und im aktuellen `main` nicht existieren oder anders sind, sind wahrscheinlich deine spezifischen Anpassungen. Besonders wichtig sind hier oft die Dateien, die im `main` (also `upstream/main`) gelöscht (`D` in der Diff-Ansicht von `main_backup` zu `main`) erscheinen, weil sie in `upstream/main` nie existierten.*
+
+6.  **Eigene Änderungen selektiv wiederherstellen:**
+    ```bash
+    # Stelle die gewünschten Dateien/Ordner aus dem Backup-Branch wieder her
+    # Ersetze <files-to-keep> mit der Liste deiner spezifischen Dateien und Ordner
+    git checkout main_backup -- <files-to-keep>
+    ```
+    *Beispiel:* `git checkout main_backup -- PLANNING.md TODO.md extensions/roo-code/ wiki/`
+    *Erklärung:* Holt exakt die angegebenen Dateien und Verzeichnisse aus dem `main_backup`-Branch und fügt sie in dein aktuelles Arbeitsverzeichnis und den Staging-Bereich ein. Sie überschreiben dabei eventuell vorhandene Versionen aus dem `upstream/main`-Reset oder werden neu hinzugefügt.*
+
+7.  **Eigene Änderungen committen:**
+    ```bash
+    # Füge die wiederhergestellten Dateien zum Staging hinzu (falls 'checkout' sie nicht schon hinzugefügt hat)
+    git add <files-to-keep>
+
+    # Erstelle einen neuen Commit mit deinen Änderungen
+    git commit -m "<Deine Commit-Nachricht, z.B. feat: Add custom files and configurations>"
+    ```
+    *Erklärung:* Erstellt einen sauberen, neuen Commit *aufbauend auf* der `upstream/main`-Historie, der ausschließlich deine spezifischen Anpassungen enthält.*
+
+8.  **Lokalen Branch zum eigenen Remote pushen (Force Push):**
+    ```bash
+    # Pushe den neu aufgebauten main-Branch zu deinem 'origin'-Remote
+    # ACHTUNG: Überschreibt die Historie auf dem Remote! Nur sicher, wenn du allein arbeitest oder weißt, was du tust.
+    git push --force-with-lease origin main
+    # Alternative (weniger sicherheitsprüfungen): git push -f origin main
+    ```
+    *Erklärung:* Da du die lokale Historie von `main` grundlegend verändert hast (`reset --hard`), passt sie nicht mehr zur Historie auf deinem `origin`-Remote. Ein normaler Push wird abgelehnt (`non-fast-forward`). Der `--force-with-lease` (oder `-f`) weist Git an, den Branch auf `origin` mit deinem lokalen Stand zu überschreiben. `--force-with-lease` ist sicherer, da es prüft, ob in der Zwischenzeit jemand anderes auf `origin` gepusht hat.*
+
+9.  **Aufräumen (Optional):**
+    ```bash
+    # Lösche den Backup-Branch, wenn du sicher bist, dass alles passt
+    git branch -d main_backup
+    ```
+
+**Ergebnis:** Dein lokaler `main`-Branch und dein `origin/main`-Remote sind nun synchron, basieren auf der Historie von `upstream/main` und enthalten deine spezifischen Änderungen als einen oder mehrere neue(n) Commit(s) darauf. Zukünftige Merges von `upstream` sollten nun deutlich einfacher sein.
+
+---
+
+### Git-Cheatsheet: Abschnitt 2 - Regelmäßiger Workflow: Upstream-Änderungen in lokalen Branch mergen
+
+**Szenario:**
+
+Du hast dein lokales Repository bereits erfolgreich mit dem Upstream-Repository synchronisiert (wie in Abschnitt 1 beschrieben oder weil die Historien von Anfang an kompatibel waren). Du möchtest nun regelmäßig die neuesten Updates vom Upstream-Repository holen und in deinen lokalen Arbeitsbranch (z. B. `main`) integrieren.
+
+**Workflow:**
+
+1.  **Upstream-Änderungen holen:**
+    ```bash
+    git fetch upstream
+    ```
+    *Erklärung:* Lädt die neuesten Commits und Branches von `upstream` herunter, ohne deinen lokalen Branch zu verändern.*
+
+2.  **Zum lokalen Ziel-Branch wechseln:**
+    ```bash
+    # Stelle sicher, dass du auf dem Branch bist, in den du mergen möchtest
+    git checkout main
+    ```
+
+3.  **Upstream-Branch in lokalen Branch mergen:**
+    ```bash
+    git merge upstream/main
+    ```
+    *Erklärung:* Versucht, die Änderungen aus `upstream/main` (seit dem letzten Merge/Fetch) in deinen aktuellen lokalen `main`-Branch zu integrieren. Git erstellt automatisch einen Merge-Commit, wenn keine Konflikte auftreten.*
+
+4.  **Merge-Konflikte lösen (falls nötig):**
+    *   Wenn Git meldet, dass es Merge-Konflikte gibt (`CONFLICT (...)`), bedeutet das, dass sowohl du (in deinem lokalen `main`) als auch `upstream` (in `upstream/main`) dieselben Codezeilen geändert haben.
+    *   Öffne die betroffenen Dateien in deinem Editor. Git markiert die Konfliktbereiche (z.B. mit `<<<<<<< HEAD`, `=======`, `>>>>>>> upstream/main`).
+    *   Bearbeite die Dateien manuell, um die Konflikte zu lösen. Entscheide, welche Änderungen (deine, die vom Upstream oder eine Kombination) beibehalten werden sollen, und entferne die Git-Konfliktmarker.
+    *   Füge die gelösten Dateien zum Staging-Bereich hinzu: `git add <konflikt-datei1> <konflikt-datei2> ...`
+    *   Schließe den Merge ab, indem du den Merge-Commit erstellst: `git commit` (Git schlägt normalerweise eine Standard-Merge-Nachricht vor, die du übernehmen oder anpassen kannst).
+    *   *Alternative bei Problemen:* Wenn du den Merge abbrechen möchtest, um neu anzufangen: `git merge --abort`
+
+5.  **Lokalen Branch zum eigenen Remote pushen:**
+    ```bash
+    git push origin main
+    ```
+    *Erklärung:* Lädt deinen aktualisierten lokalen `main`-Branch (inklusive des Merge-Commits und eventuell deiner eigenen neuen Commits) zu deinem `origin`-Remote hoch. Da die Historien jetzt kompatibel sind, ist hier **kein** Force Push nötig.*
+
+**Ergebnis:** Dein lokaler `main`-Branch und dein `origin/main`-Remote sind auf dem neuesten Stand und enthalten sowohl die letzten Änderungen vom Upstream als auch deine eigenen Arbeiten.
+
+ 
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+______________________________________________________
+<br><br>
+
+
 # Definition of “downstream” and “upstream”
 - https://stackoverflow.com/questions/2739376/definition-of-downstream-and-upstream
 ```bash
@@ -601,11 +790,6 @@ When you make changes, you usually want to send them back "upstream" so they mak
 
 Sometimes you'll read about package or release managers (the people, not the tool) talking about submitting changes to "upstream". That usually means they had to adjust the original sources so they could create a package for their system. They don't want to keep making those changes, so if they send them "upstream" to the original source, they shouldn't have to deal with the same issue in the next release.
 ```
-
-
-
-# Forking
--  https://guides.github.com/activities/forking/#:~:text=After%20using%20GitHub%20by%20yourself,contribute%20to%20someone%20else's%20project.&text=Creating%20a%20%E2%80%9Cfork%E2%80%9D%20is%20producing,repository%20and%20your%20personal%20copy.
 
 
 
