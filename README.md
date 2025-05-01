@@ -605,7 +605,95 @@ ______________________________________________________
 <details><summary>Click to expand..</summary>
 
 
-### Git-Cheatsheet: Abschnitt 1 - Lokales Repository erstmalig mit Upstream synchronisieren (bei nicht verwandten Historien)
+
+
+# Git Subtree Management für `extensions/roo-code`
+
+
+<details><summary>Click to expand..</summary>
+
+## 1. Initiales Hinzufügen eines bestehenden Ordners als Subtree
+
+Diese Schritte wurden ausgeführt, um den bereits existierenden und modifizierten Ordner `extensions/roo-code` mit dem Upstream-Repository `https://github.com/RooVetGit/Roo-Code` als Subtree zu verbinden.
+
+1.  **Upstream-Remote hinzufügen:**
+    ```bash
+    git remote add -f roo-code-upstream https://github.com/RooVetGit/Roo-Code.git
+    ```
+    *   Fügt ein neues Remote-Repository namens `roo-code-upstream` hinzu und holt dessen Daten (`-f`).
+
+2.  **Lokalen Ordner temporär verschieben:**
+    ```bash
+    mv extensions/roo-code extensions/roo-code_TEMP
+    ```
+    *   Verschiebt den aktuellen Inhalt von `extensions/roo-code` (mit deinen lokalen Änderungen) in ein temporäres Verzeichnis. **Wichtig:** Dieser Schritt erzeugt ungestagete Änderungen, die *nicht* committed werden, bevor der Subtree hinzugefügt wird.
+
+3.  **Subtree hinzufügen:**
+    ```bash
+    git subtree add --prefix=extensions/roo-code roo-code-upstream main --squash
+    ```
+    *   Fügt den Inhalt des `main`-Branches vom `roo-code-upstream`-Remote als Subtree in den Pfad `extensions/roo-code` ein.
+    *   `--prefix`: Gibt das Zielverzeichnis im Hauptprojekt an.
+    *   `--squash`: Fasst die gesamte History des Upstreams zu einem einzigen Commit im Hauptprojekt zusammen.
+
+4.  **Lokale Änderungen zurückspielen:**
+    ```bash
+    rsync -a --delete extensions/roo-code_TEMP/ extensions/roo-code/
+    ```
+    *   Kopiert den Inhalt (inklusive deiner Modifikationen) aus dem temporären Ordner zurück in den neu erstellten Subtree-Ordner.
+    *   `-a`: Archivmodus (rekursiv, erhält Berechtigungen, etc.).
+    *   `--delete`: Löscht Dateien im Ziel (`extensions/roo-code`), die nicht in der Quelle (`extensions/roo-code_TEMP`) vorhanden sind. Dies stellt sicher, dass der Zustand exakt dem deines temporären Ordners entspricht.
+
+5.  **Zusammengeführte Änderungen committen:**
+    ```bash
+    git add extensions/roo-code
+    git commit -m "Merge local roo-code changes after subtree add"
+    ```
+    *   Fügt die Änderungen (die Differenz zwischen dem ursprünglichen Upstream und deinen lokalen Anpassungen) zum Staging-Bereich hinzu und committet sie.
+
+6.  **Temporäres Verzeichnis entfernen:**
+    ```bash
+    git rm -r extensions/roo-code_TEMP
+    git commit -m "Remove temporary roo-code directory"
+    ```
+    *   Entfernt das temporäre Verzeichnis aus der Arbeitskopie und dem Git-Index und committet diese Änderung.
+
+## 2. Workflow zum Aktualisieren des Subtrees (Pull)
+
+Um zukünftige Änderungen vom Upstream-Repository (`roo-code-upstream`) in deinen lokalen Subtree (`extensions/roo-code`) zu holen:
+
+1.  **Updates vom Upstream holen und mergen:**
+    ```bash
+    git subtree pull --prefix=extensions/roo-code roo-code-upstream main --squash
+    ```
+    *   Holt die neuesten Änderungen vom `main`-Branch des `roo-code-upstream`-Remotes.
+    *   Versucht, diese Änderungen mit dem aktuellen Stand deines `extensions/roo-code`-Subtrees zu mergen.
+    *   `--squash`: Fasst die eingehenden Änderungen vom Upstream wieder zu einem Commit zusammen.
+
+2.  **(Optional) Konflikte lösen:**
+    *   Falls Git Merge-Konflikte meldet (weil sowohl du als auch der Upstream dieselben Code-Teile geändert haben), musst du diese manuell lösen.
+    *   Öffne die betroffenen Dateien, suche nach den Konfliktmarkern (`<<<<<<<`, `=======`, `>>>>>>>`), bearbeite den Code, um die gewünschte Version herzustellen, und entferne die Marker.
+    *   Füge die gelösten Dateien hinzu (`git add <datei>`) und schließe den Merge-Prozess mit `git commit` ab.
+
+ 
+</details>
+
+
+
+
+
+
+
+
+
+<br><br>
+
+
+
+# Lokales Repository erstmalig mit Upstream synchronisieren (bei nicht verwandten Historien)
+
+<details><summary>Click to expand..</summary>
+
 
 **Szenario:**
 
@@ -738,7 +826,11 @@ Du hast dein lokales Repository bereits erfolgreich mit dem Upstream-Repository 
 
 **Ergebnis:** Dein lokaler `main`-Branch und dein `origin/main`-Remote sind auf dem neuesten Stand und enthalten sowohl die letzten Änderungen vom Upstream als auch deine eigenen Arbeiten.
 
- 
+
+
+ </details>
+
+
 </details>
 
 
