@@ -2274,14 +2274,41 @@ Then run::
     git push github && git push gitlab
 	
 	
-Add this to your ~/.gitconfig::
-	
+Add this to your ~/.gitconfig:
+
+Push to specific:
+```
+[alias]
+    # Pusht den aktuellen Branch zu allen *existierenden* Standard-Remotes
+    pushall = "!f(){ \
+        for remote in origin github bb gitlab gitlabInternal; do \
+            if git remote get-url \"$remote\" > /dev/null 2>&1; then \
+                echo \"Pushing to $remote...\"; \
+                git push \"$remote\"; \
+            fi; \
+        done; \
+    }; f"
+
+    # Force-Pusht den aktuellen Branch zu allen *existierenden* Standard-Remotes
+    pushallforce = "!f(){ \
+        for remote in origin github bb gitlab gitlabInternal; do \
+            if git remote get-url \"$remote\" > /dev/null 2>&1; then \
+                echo \"Force pushing to $remote...\"; \
+                git push -f \"$remote\"; \
+            fi; \
+        done; \
+    }; f"
+```
+
+
+Push to all remote repos:
+```
     [alias]
         pushall = "!f(){ for i in `git remote`; do git push $i; done; };f"
 	
     [alias]
         pushallforce = "!f(){ for i in `git remote`; do git push -f $i; done; };f"
-
+```
 	
 	
 Remove all remote repos
