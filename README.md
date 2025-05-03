@@ -717,7 +717,9 @@ Die `pushall`-Befehle pushen nun zuverlässig nur zu denjenigen deiner Standard-
 
 <details><summary>Click to expand..</summary>
 
-## 1. Initiales Hinzufügen eines bestehenden Ordners als Subtree
+## 1.
+
+### Option a) Initiales Hinzufügen eines bestehenden Ordners als Subtree (**Not really tested**)
 
 Diese Schritte wurden ausgeführt, um den bereits existierenden und modifizierten Ordner `extensions/roo-code` mit dem Upstream-Repository `https://github.com/RooVetGit/Roo-Code` als Subtree zu verbinden.
 
@@ -762,6 +764,31 @@ Diese Schritte wurden ausgeführt, um den bereits existierenden und modifizierte
     git commit -m "Remove temporary roo-code directory"
     ```
     *   Entfernt das temporäre Verzeichnis aus der Arbeitskopie und dem Git-Index und committet diese Änderung.
+
+
+<br><br>
+
+### Option a) Initiales Hinzufügen eines bestehenden Ordners als Subtree (**Not really tested**)
+
+```
+cp -R extensions/roo-code extensions/roo-code_BACKUP
+
+rm -rf extensions/roo-code
+
+git remote add -f roo-code-upstream https://github.com/RooVetGit/Roo-Code.git
+
+git add extensions/roo-code
+
+git commit --no-verify -m "Removed roo-code"
+
+git subtree add --prefix=extensions/roo-code roo-code-upstream main --squash
+
+# Dann unterschiede prüfen mikt extension compare folders. Wenn alles gemerged einfach pushen und dann utnne schauen für puill workflow
+```
+
+
+<br><br>
+
 
 ## 2. Workflow zum Aktualisieren des Subtrees (Pull)
 
