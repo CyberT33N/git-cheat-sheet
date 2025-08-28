@@ -128,6 +128,17 @@ ______________________________________________________
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 # Ticket > Merge Request (MR) Prozess
 - https://github.com/CyberT33N/ci-cd-cheat-sheet/blob/main/README.md#ticket--merge-request-mr-prozess
 
@@ -311,6 +322,38 @@ git push --force --set-upstream origin fix/TICKET-232/edit-custom-block/main
 
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
