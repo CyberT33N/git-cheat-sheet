@@ -4738,7 +4738,20 @@ ________
 
 <details><summary>Click to expand..</summary>
 
-### Git freezing on new line when try to git push
+# Filename too long Merge with strategy ort failed.
+- Windows problem
+
+Open Powershell as admin:
+```shell
+git config --system core.longpaths true
+```
+
+Then re-open terminal and you can make git pull :)
+
+
+<br><br>
+
+# Git freezing on new line when try to git push
 ```shell
 # First remove git
 sudo apt-get purge git
