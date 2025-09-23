@@ -3110,6 +3110,12 @@ git stash list
 git stash apply
 ```
 
+## apply most recent stash for specific file
+```bash
+git restore -s "stash@{0}" -- TODO.md   
+```
+
+
 <br><br>
 
 ## apply older stash
