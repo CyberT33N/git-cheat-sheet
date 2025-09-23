@@ -1131,6 +1131,25 @@ git config --global credential.helper store
 
 
 
+<br><br>
+______________________________________________________
+<br><br>
+
+# diff
+
+## exclude specific file
+```
+git diff -- . ':!package-lock.json'
+```
+
+
+
+
+
+
+
+
+
 
 
 
