@@ -25,3 +25,10 @@ git restore --source=origin/develop -- test\regression\test\fixtures\pvs\__snaps
 ```bash
 git restore --source=develop -- test\regression\test\fixtures\pvs\__snapshots__\fixutres.test.ts.snap
 ```
+
+
+Method 2:
+```shell
+git fetch origin develop
+git restore --source=origin/develop --staged --worktree -- "test\unit\modules\pvs\dampsoft\abbrevation"
+```
