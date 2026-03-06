@@ -4,6 +4,7 @@
 - [Getting Started / Uninstall](./getting-started/uninstall.md)
 - [Configuration / User and Color](./configuration/user-and-color.md)
 - [Configuration / SSH](./configuration/ssh.md)
+- [Configuration / Multiple GitHub Accounts](./configuration/multiple-github-accounts.md)
 - [Git LFS / Overview](./git-lfs/overview.md)
 - [Remotes / Remotes and Origin](./remotes/remotes-and-origin.md)
 - [Forking / Overview](./forking/overview.md)
