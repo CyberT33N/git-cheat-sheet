@@ -81,4 +81,36 @@ Der entscheidende Recovery-Schritt ist nicht das bloße Aktivieren von LFS, sond
 Dieses Vorgehen ist sauber, solange die betroffenen Commits **noch nicht erfolgreich auf den Remote gelangt** sind.  
 Wenn die Historie bereits geteilt wurde, muss man bei einem Rewrite deutlich vorsichtiger vorgehen.
 
-Wenn du willst, formuliere ich dir daraus noch eine sehr kurze, wiederverwendbare `Git LFS Recovery`-Checkliste für dein Cheat Sheet.
+
+
+
+
+
+
+
+## 1. Lokale Inhalte wieder materialisieren
+
+Wenn die Dateien nach der LFS-Migration nur noch die 3-zeiligen Pointer zeigen, ist das meist ein normaler Checkout-Zustand. Die echten Inhalte kannst du zuerst **ohne Netzwerk** wieder in den Working Tree holen:
+
+```bash
+git lfs checkout "tooling/crawler/pages/arxiv/prompt/output/papers.json" "tooling/crawler/pages/arxiv/prompt/storage/papers.sqlite"
+```
+
+Wenn die Objekte lokal nicht mehr im LFS-Cache liegen, hole sie von dem Remote, bei dem LFS bereits funktioniert, und materialisiere sie danach erneut:
+
+```bash
+git lfs pull origin --include="tooling/crawler/pages/arxiv/prompt/output/papers.json,tooling/crawler/pages/arxiv/prompt/storage/papers.sqlite"
+git lfs checkout "tooling/crawler/pages/arxiv/prompt/output/papers.json" "tooling/crawler/pages/arxiv/prompt/storage/papers.sqlite"
+```
+
+So prüfst du das Ergebnis schnell:
+
+```bash
+ls -lh "tooling/crawler/pages/arxiv/prompt/output/papers.json" "tooling/crawler/pages/arxiv/prompt/storage/papers.sqlite"
+```
+
+Erwartung:
+- `papers.json` ist wieder eine große JSON-Datei.
+- `papers.sqlite` ist wieder eine große Binärdatei und nicht mehr der kleine LFS-Pointertext.
+
+
