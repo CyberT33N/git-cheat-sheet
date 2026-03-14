@@ -1,3 +1,15 @@
+
+
+
+https://github.com/unhappychoice/gitlogue?tab=readme-ov-file
+
+
+
+
+-----------------------
+
+
+
 https://github.com/gitui-org/gitui
 
 
