@@ -10,7 +10,7 @@ Use this setup when one machine must access different repositories with differen
 ## Recommended approach
 - Create one SSH key pair per GitHub account.
 - Add each public key to the matching GitHub account.
-- Create one SSH host alias per account in `~/.ssh/config`.
+- Create one SSH host alias per account in `~/.ssh/config`. Or Windows `C:\Users\example\.ssh`
 - Clone each repository with the matching alias.
 - Set `user.name` and `user.email` locally inside each repository.
 
