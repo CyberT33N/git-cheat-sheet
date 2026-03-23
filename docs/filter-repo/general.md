@@ -9,6 +9,13 @@ Install
 py -m pip install git-filter-repo
 ```
 
+Wichtig ist, dass man lokal an einer neuen Stelle einen Mirror-Clone macht, damit die Commit-Historie lokal nicht mehr vorhanden ist.
+
+Das heißt, man muss auch sicherstellen, dass man in dem anderen Projekt vorher natürlich alle Änderungen gepusht hat. Dann würde man den Befehl unten ausführen, um es zu überschreiben und die Datei zu löschen, die man nicht haben will.
+
+Anschließend müsste man in dem vorherigen Stand, in dem das Projekt war, den Ordner löschen und dann erneut einen Git-Clone machen.
+
+
 Then if we want to delete e.g. tmp.txt
 ```shell
 cd "$HOME\Downloads\tmp"
